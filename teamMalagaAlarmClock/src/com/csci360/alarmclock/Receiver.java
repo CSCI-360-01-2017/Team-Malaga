@@ -52,20 +52,53 @@ public class Receiver {
         return this.id;
     }
     
+     /**
+     * returns the minimum frequency in this range.
+     * @return the minimum frequency for the range of stations,in kHz
+     */
+    public int getMin(){
+        return this.min;
+    }
+    
     /**
-     * returns the current frequency
+     * returns the maximum frequency in this range.
+     * @return the maximum frequency for the range of stations,in kHz
+     */
+    public int getMax(){
+        return this.max;
+    }
+    
+    /**
+     * returns the step between each possible station in this range
+     * @return the step between possible radio stations
+     */
+    public int getStep(){
+        return this.step;
+    }
+    
+    /**
      * @return the current frequency as an integer, in khz.
      */
-    public int getCurrentFreq(){
+    public int getCurrent(){
         return this.current;
     }
-
+    
     /**
-     * 
+     * returns whether or not the display convention is in mHz
+     * @return true if convention is to display in mHz, false if convention is 
+     * to display in kHz
+     */
+    public boolean getDisplay(){
+        return this.displaymHz;
+    }
+    
+    /**
+     * returns the frequency as a formatted string, either in kHz or mHz depending
+     * on convention (typically kHz for AM and mHz for FM)
      * @return the current frequency as a string, in the standard format for
      * the receiver's range, either megahertz or kilohertz.
      */
-    public String getCurrentFreqString(){
+    public String getCurrentFormattedString(){
         String display;
         if (this.displaymHz){
             // set the display in the form of "##.#" representing the
@@ -80,7 +113,19 @@ public class Receiver {
         return display;
     }
     
-        
+    /**
+     * returns the broadcast emulator object used by the receiver, which has the same
+     * min, max, and step values as this receiver, and a randomly generated list of 
+     * viable or "good" stations.
+     * @return the broadcast emulator object used by the receiver
+     */
+    public BroadcastEmulator getBroadcastEmulator(){
+        return this.broadcastEmulator;
+    }
+       
+    /**
+     * sets the current frequency to the next good signal from the broadcast emulator.
+     */
     public void next(){
         boolean found = false;
         while(!found){
@@ -96,6 +141,9 @@ public class Receiver {
         }
     }
     
+     /**
+     * sets the current frequency to the previous good signal from the broadcast emulator.
+     */
     public void prev(){
         boolean found = false;
         while(!found){

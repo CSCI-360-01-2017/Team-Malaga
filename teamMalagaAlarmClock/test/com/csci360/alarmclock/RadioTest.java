@@ -1,20 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Assignment for CSCI 360, created by Team Malaga.
  */
 package com.csci360.alarmclock;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author hotdog
+ * @author Team-Malaga
  */
 public class RadioTest {
     
@@ -27,14 +23,6 @@ public class RadioTest {
     
     @AfterClass
     public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -74,20 +62,6 @@ public class RadioTest {
     }
 
     /**
-     * Test of getStation method, of class Radio.
-     */
-    @Test
-    public void testGetStation() {
-        System.out.println("getStation");
-        Radio instance = new Radio();
-        int expResult = 0;
-        int result = instance.getStation();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of incrementVolume method, of class Radio.
      */
     @Test
@@ -112,60 +86,6 @@ public class RadioTest {
     }
 
     /**
-     * Test of getVolume method, of class Radio.
-     */
-    @Test
-    public void testGetVolume() {
-        System.out.println("getVolume");
-        Radio instance = new Radio();
-        int expResult = 0;
-        int result = instance.getVolume();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
-    /**
-     * Test of stop method, of class Radio.
-     */
-    @Test
-    public void testStop() {
-        System.out.println("stop");
-        Radio instance = new Radio();
-        instance.stop();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getOn method, of class Radio.
-     */
-    @Test
-    public void testGetOn() {
-        System.out.println("getOn");
-        Radio instance = new Radio();
-        boolean expResult = false;
-        boolean result = instance.getOn();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setOn method, of class Radio.
-     */
-    @Test
-    public void testSetOn() {
-        System.out.println("setOn");
-        boolean on = false;
-        Radio instance = new Radio();
-        instance.setOn(on);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of playBroadcast method, of class Radio.
      */
     @Test
@@ -185,6 +105,18 @@ public class RadioTest {
         System.out.println("start");
         Radio instance = new Radio();
         instance.start();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of stop method, of class Radio.
+     */
+    @Test
+    public void testStop() {
+        System.out.println("stop");
+        Radio instance = new Radio();
+        instance.stop();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

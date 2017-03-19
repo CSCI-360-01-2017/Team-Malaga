@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * A class for emulating a set of viable broadcasts within a range of frequencies.
  * 
- * @author Team Malaga
+ * @author Team-Malaga
  */
 public class BroadcastEmulator {
     /**
@@ -27,7 +27,7 @@ public class BroadcastEmulator {
     
     
     /**
-     * 
+     * constructor method for a broadcast emulator.
      * @param min the minimum frequency for the range in kHz
      * @param max the maximum frequency for the range in kHz
      * @param step the step value in kHz between possible broadcasts
@@ -60,5 +60,11 @@ public class BroadcastEmulator {
         return contained;
     }
     
-    
+    /**
+     * returns the array of clear stations
+     * @return the array containing clear stations
+     */
+    public int[] getClearStations(){
+        return this.clearStations;
+    }
 }

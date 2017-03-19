@@ -1,5 +1,5 @@
 /*
- * Assignment for CSCI 360, created by Team Malaga. MIT License I guess??
+ * Assignment for CSCI 360, created by Team Malaga.
  */
 package com.csci360.alarmclock;
 
@@ -51,6 +51,14 @@ public class Radio {
     }
     
     /**
+     * returns the receiver object currently in use
+     * @return the current receiver
+     */
+    public Receiver getReceiver(){
+        return this.currentReceiver;
+    }
+    
+    /**
      * switches the currently listening receiver from one to another.
      */
     public void switchReceiver(){
@@ -78,13 +86,14 @@ public class Radio {
     public void prevStation(){
         this.currentReceiver.prev();
     }
+    
     /**
      * calls to the receiver that is designated by the currentReceiver and  
      * retrieves the current frequency being played in kHz, expressed as an int.
      * @return 
      */
     public int getStation(){
-        return this.currentReceiver.getCurrentFreq();
+        return this.currentReceiver.getCurrent();
     }
 
     /**
@@ -105,14 +114,26 @@ public class Radio {
         }
     }
     
+    /**
+     * returns the current volume of the radio
+     * @return the current volume of the radio
+     */
     public int getVolume(){
         return this.currentVol;
     }
     
+    /**
+     * returns the on status of the radio
+     * @return true if the radio is on, off if otherwise.
+     */
     public boolean getOn(){
         return this.on;
     }
     
+    /**
+     * sets the on status of the radio
+     * @param on the new status of the radio
+     */
     public void setOn(boolean on){
         this.on = on;
     }
@@ -121,7 +142,7 @@ public class Radio {
      * Emulate the playing of a radio station using a print statement.
      */
     public void playBroadcast(){
-        System.out.printf("Playing %s broadcast from station %s at volume %d\n", this.currentReceiver.getId(), this.currentReceiver.getCurrentFreqString(), this.getVolume());       
+        System.out.printf("Playing %s broadcast from station %s at volume %d\n", this.currentReceiver.getId(), this.currentReceiver.getCurrentFormattedString(), this.getVolume());       
     }
     
     /**
