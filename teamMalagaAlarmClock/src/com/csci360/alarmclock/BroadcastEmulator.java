@@ -19,11 +19,11 @@ public class BroadcastEmulator {
     /**
      * the number of clear stations within this range of frequencies
      */
-    private int[] clearStations;
+    private final int[] clearStations;
     /**
      * a random number generator
      */
-    private Random rand;
+    private final Random rand = new Random();
     
     
     /**
@@ -35,12 +35,12 @@ public class BroadcastEmulator {
     public BroadcastEmulator(int min, int max, int step){
         possibleStations= (max-min)/step;
         clearStations = new int[possibleStations];      //clear stations has a capacity to hold all possible stations
-        int current = min+rand.nextInt(10)*step;        //clear stations are determined semi-randomly
+        int current = min+(rand.nextInt(10)*step);        //clear stations are determined semi-randomly
         int index = 0;                                  //initialize index
         //populate an array of clear stations
         while (current <= max){
             clearStations[index] = current;             
-            current = current+rand.nextInt(10)*step;
+            current = current+(rand.nextInt(10)*step);
             index++;
         }
         //no need to sort array, values are already in order

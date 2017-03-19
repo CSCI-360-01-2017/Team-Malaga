@@ -125,17 +125,6 @@ public class RadioTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of play method, of class Radio.
-     */
-    @Test
-    public void testPlay() {
-        System.out.println("play");
-        Radio instance = new Radio();
-        instance.play();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of stop method, of class Radio.
@@ -145,6 +134,57 @@ public class RadioTest {
         System.out.println("stop");
         Radio instance = new Radio();
         instance.stop();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getOn method, of class Radio.
+     */
+    @Test
+    public void testGetOn() {
+        System.out.println("getOn");
+        Radio instance = new Radio();
+        boolean expResult = false;
+        boolean result = instance.getOn();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setOn method, of class Radio.
+     */
+    @Test
+    public void testSetOn() {
+        System.out.println("setOn");
+        boolean on = false;
+        Radio instance = new Radio();
+        instance.setOn(on);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of playBroadcast method, of class Radio.
+     */
+    @Test
+    public void testPlayBroadcast() {
+        System.out.println("playBroadcast");
+        Radio instance = new Radio();
+        instance.playBroadcast();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of start method, of class Radio.
+     */
+    @Test
+    public void testStart() {
+        System.out.println("start");
+        Radio instance = new Radio();
+        instance.start();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

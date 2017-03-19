@@ -81,6 +81,7 @@ public class Radio {
     /**
      * calls to the receiver that is designated by the currentReceiver and  
      * retrieves the current frequency being played in kHz, expressed as an int.
+     * @return 
      */
     public int getStation(){
         return this.currentReceiver.getCurrentFreq();
@@ -108,20 +109,32 @@ public class Radio {
         return this.currentVol;
     }
     
+    public boolean getOn(){
+        return this.on;
+    }
+    
+    public void setOn(boolean on){
+        this.on = on;
+    }
+    
     /**
      * Emulate the playing of a radio station using a print statement.
      */
-    public void play(){
-        this.on = true;
-        while(this.on){
-        System.out.printf("Playing %s broadcast from station %s at volume %d", this.currentReceiver.getId(), this.currentReceiver.getCurrentFreqString(), this.getVolume());
-        }
+    public void playBroadcast(){
+        System.out.printf("Playing %s broadcast from station %s at volume %d\n", this.currentReceiver.getId(), this.currentReceiver.getCurrentFreqString(), this.getVolume());       
+    }
+    
+    /**
+     * Starts the playing of the radio.
+     */
+    public void start(){
+        setOn(true);
     }
     
     /**
      * Stops the playing of the radio.
      */
     public void stop(){
-        on = false;
+        setOn(false);
     }
 }
