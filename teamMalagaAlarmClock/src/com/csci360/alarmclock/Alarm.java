@@ -26,11 +26,12 @@ public class Alarm {
         
     }
     
-    public void activate(){
+    public boolean activate(){
         if (repeat == true){
             createOffset();
             
         }
+        return true;
     }
     
     public void createAlarm(){
