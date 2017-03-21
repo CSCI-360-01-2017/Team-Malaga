@@ -30,6 +30,7 @@ public class ReceiverTest {
      */
     @Test
     public void testGetCurrentFormattedString() {
+        //test that the formatted string matches the numerical value, as formatted
         System.out.println("getCurrentFormattedString");
         Receiver instance = null;
         String expResult = "";
@@ -44,6 +45,7 @@ public class ReceiverTest {
      */
     @Test
     public void testNext() {
+        //similiar to isClearStation in broadcastEmulator test
         System.out.println("next");
         Receiver instance = null;
         instance.next();
@@ -56,6 +58,7 @@ public class ReceiverTest {
      */
     @Test
     public void testPrev() {
+        //similiar to isClearStation in broadcastEmulator test
         System.out.println("prev");
         Receiver instance = null;
         instance.prev();
