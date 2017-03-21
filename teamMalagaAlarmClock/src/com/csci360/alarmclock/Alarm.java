@@ -86,7 +86,7 @@ public class Alarm {
     public void createAlarm(int hours, int minutes, boolean repeat, String am_pm, boolean isMilitaryTime){
         this.repeat = repeat;
         alarmTime = new Date();
-        
+        this.disableAlarm = false;
         
         if (isMilitaryTime){
             alarmTime.setHours(hours);
