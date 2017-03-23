@@ -1,5 +1,7 @@
 /*
- * Assignment for CSCI 360, created by Team Malaga.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package com.csci360.alarmclock;
 
@@ -12,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Team-Malaga
+ * @author Eric
  */
 public class AlarmTest {
     
@@ -80,10 +82,10 @@ public class AlarmTest {
         int hours = 0;
         int minutes = 0;
         boolean repeat = false;
-        String am_pm = "";
+        boolean AMTruePMFalse = false;
         boolean isMilitaryTime = false;
         Alarm instance = null;
-        instance.createAlarm(hours, minutes, repeat, am_pm, isMilitaryTime);
+        instance.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

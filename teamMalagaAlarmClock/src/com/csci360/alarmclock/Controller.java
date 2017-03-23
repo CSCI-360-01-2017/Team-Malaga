@@ -7,7 +7,7 @@ package com.csci360.alarmclock;
  *
  * @author Team-Malaga
  */
-public class Controller {
+public class Controller implements ControllerInterface{
     
     private Alarm soundingAlarm;
     private Alarm alarm1;
@@ -16,7 +16,7 @@ public class Controller {
     private int hours;
     private int minutes;
     private boolean repeat;
-    private String am_pm;
+    private boolean AMTruePMFalse;
     private boolean isMilitaryTime;
     
     
@@ -50,8 +50,8 @@ public class Controller {
         this.repeat = r;
     }
     
-    public void setAMPM(String ap){
-        this.am_pm = ap;
+    public void setAMPM(boolean ap){
+        this.AMTruePMFalse = ap;
     }
     
     public void setMilitaryTime(boolean mt){
@@ -59,7 +59,7 @@ public class Controller {
     }
     
     public void setAlarm(){
-        this.selectedAlarm.createAlarm(hours, minutes, repeat, am_pm, isMilitaryTime);
+        this.selectedAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
     }
     
     public void soundAlarm(Alarm a){
