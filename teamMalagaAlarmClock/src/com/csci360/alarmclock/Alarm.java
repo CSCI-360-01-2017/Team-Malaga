@@ -16,6 +16,8 @@ import java.util.Date;
  */
 public class Alarm {
     
+    static final int SNOOZE_TIME = 10;
+    static final int REPEAT_TIME = 1;
     private boolean repeat;
     private ControllerInterface sysController;
     private Date alarmTime;
@@ -53,7 +55,7 @@ public class Alarm {
     public void snoozeAlarm(){
         Date tempTime = new Date();
         tempTime.setTime(alarmTime.getTime());
-        snoozeTime.setMinutes(snoozeTime.getMinutes() + 10);
+        snoozeTime.setMinutes(snoozeTime.getMinutes() + SNOOZE_TIME);
         alarmTime = snoozeTime;
         createOffset();
         alarmTime = tempTime;
@@ -79,11 +81,7 @@ public class Alarm {
 
     public boolean isDisableAlarm() {
         return disableAlarm;
-    }
-
-    public void setDisableAlarm(boolean disableAlarm) {
-        this.disableAlarm = disableAlarm;
-    }
+    } 
 
     public Date getSnoozeTime() {
         return snoozeTime;
@@ -102,7 +100,7 @@ public class Alarm {
         if(!disableAlarm){
 
             if (repeat){
-                alarmTime.setDate(alarmTime.getDate()+1);
+                alarmTime.setDate(alarmTime.getDate()+REPEAT_TIME);
                 createOffset();
             }
             
@@ -153,7 +151,7 @@ public class Alarm {
     /**
      * the time until the alarm sounds is dictated through a Timer.
      */
-    public void createOffset(){
+    private void createOffset(){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
