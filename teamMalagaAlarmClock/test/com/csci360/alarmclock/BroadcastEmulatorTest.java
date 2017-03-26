@@ -42,13 +42,12 @@ public class BroadcastEmulatorTest {
     @Test
     public void testIsAClearStation() {
         System.out.println("isAClearStation");
-        int frequency = 0;
-        BroadcastEmulator instance = null;
+        int frequency = -1;
+        BroadcastEmulator instance = new BroadcastEmulator(88,200,20);
         boolean expResult = false;
         boolean result = instance.isAClearStation(frequency);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
     
 }

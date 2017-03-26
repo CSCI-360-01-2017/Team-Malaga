@@ -65,6 +65,10 @@ public class Controller implements ControllerInterface{
     public void soundAlarm(Alarm a){
         this.soundingAlarm = a;
     }
+    
+    public Alarm getSoundingAlarm(){
+        return this.soundingAlarm;
+    }
 
     public void disableAlarm(){
         this.selectedAlarm.disableAlarm();

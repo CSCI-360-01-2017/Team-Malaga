@@ -18,9 +18,14 @@ import static org.junit.Assert.*;
  */
 public class AlarmTest {
     
-    public AlarmTest() {
-    }
+    Alarm testingAlarm;
+    Controller testingController;
     
+    public AlarmTest() {
+        this.testingController = new Controller();
+        this.testingAlarm = new Alarm(testingController);
+    }
+      
     @BeforeClass
     public static void setUpClass() {
     }
@@ -43,22 +48,9 @@ public class AlarmTest {
     @Test
     public void testDisableAlarm() {
         System.out.println("disableAlarm");
-        Alarm instance = null;
-        instance.disableAlarm();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of snoozeAlarm method, of class Alarm.
-     */
-    @Test
-    public void testSnoozeAlarm() {
-        System.out.println("snoozeAlarm");
-        Alarm instance = null;
-        instance.snoozeAlarm();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(testingAlarm.isDisableAlarm());
+        testingAlarm.disableAlarm();
+        assertTrue(testingAlarm.isDisableAlarm());
     }
 
     /**
@@ -67,39 +59,61 @@ public class AlarmTest {
     @Test
     public void testActivate() {
         System.out.println("activate");
-        Alarm instance = null;
-        instance.activate();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        testingAlarm.activate();
+        assertSame(testingAlarm, testingController.getSoundingAlarm());
     }
 
     /**
      * Test of createAlarm method, of class Alarm.
      */
     @Test
-    public void testCreateAlarm() {
-        System.out.println("createAlarm");
+    public void testCreateAlarmMidnight() {
+        System.out.println("createAlarmMidnight");
         int hours = 0;
         int minutes = 0;
         boolean repeat = false;
-        boolean AMTruePMFalse = false;
+        boolean AMTruePMFalse = true;
         boolean isMilitaryTime = false;
-        Alarm instance = null;
-        instance.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        assertEquals(hours, testingAlarm.getAlarmTime().getHours());
+        assertEquals(minutes, testingAlarm.getAlarmTime().getMinutes());
+        assertEquals(repeat, testingAlarm.isRepeat());
     }
-
+    
     /**
-     * Test of createOffset method, of class Alarm.
+     * Test of createAlarm method, of class Alarm.
      */
     @Test
-    public void testCreateOffset() {
-        System.out.println("createOffset");
-        Alarm instance = null;
-        instance.createOffset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCreateAlarmMilitaryTimeMidnight() {
+        System.out.println("createAlarmMilitaryTimeMidnight");
+        int hours = 0;
+        int minutes = 0;
+        boolean repeat = true;
+        boolean AMTruePMFalse = false;
+        boolean isMilitaryTime = true;
+        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        assertEquals(hours, testingAlarm.getAlarmTime().getHours());
+        assertEquals(minutes, testingAlarm.getAlarmTime().getMinutes());
+        assertEquals(repeat, testingAlarm.isRepeat());
     }
+    
+    /**
+     * Test of createAlarm method, of class Alarm.
+     */
+    @Test
+    public void testCreateAlarmSnoozeTime() {
+        System.out.println("createAlarmSnoozeTime");
+        int hours = 0;
+        int minutes = 0;
+        boolean repeat = false;
+        boolean AMTruePMFalse = true;
+        boolean isMilitaryTime = false;
+        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        assertEquals(hours, testingAlarm.getSnoozeTime().getHours());
+        assertEquals(minutes, testingAlarm.getSnoozeTime().getMinutes());
+        assertEquals(repeat, testingAlarm.isRepeat());
+   
+    }
+
     
 }
