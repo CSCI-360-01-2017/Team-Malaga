@@ -62,16 +62,13 @@ public class Radio {
      * switches the currently listening receiver from one to another.
      */
     public void switchReceiver(){
-        
-        currentReceiver = receivers[(java.util.Arrays.asList(receivers).indexOf(currentReceiver)+1)%2];
-        // keep below logic until certain that the new logic works
-        //if (currentReceiver.equals(receivers[1])){
-        //    currentReceiver = receivers[0];
-        //}
-        //else{ 
-        //    //if (currentReceiver.equals(receivers[0]))
-        //    currentReceiver = receivers[1];
-        //}
+        if (currentReceiver.equals(receivers[1])){
+            currentReceiver = receivers[0];
+        }
+        else{ 
+            //if (currentReceiver.equals(receivers[0]))
+            currentReceiver = receivers[1];
+        }
     }
     
     /**

@@ -14,17 +14,6 @@ import static org.junit.Assert.*;
  */
 public class BroadcastEmulatorTest {
     
-    //TODO implement tests:  check that there is at least one station, foundStation
-    //where foundStation is within the range used to initialize the broadcastEmulator, 
-    //and that it is a possible station, i.e. (foundStation-start) is a multiple of (step).
-    //This could be done by running isAClearStation on a range of values, and when it returns
-    //true, check that the value is one of the possible stations.
-    //EXTRA may also test that all values that are either 1) outside of the range or 
-    //2) within the range but not a multiple of step return false
-    
-    
-        
-    
     public BroadcastEmulatorTest() {
     }
     

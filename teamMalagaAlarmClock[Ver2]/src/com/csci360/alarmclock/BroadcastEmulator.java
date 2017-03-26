@@ -67,12 +67,4 @@ public class BroadcastEmulator {
     public int[] getClearStations(){
         return this.clearStations;
     }
-    
-    /**
-     * returns the number of clear stations
-     * @return the number of stations possible in this range
-     */
-    public int getPossibleStations(){
-        return this.possibleStations;
-    }
 }
