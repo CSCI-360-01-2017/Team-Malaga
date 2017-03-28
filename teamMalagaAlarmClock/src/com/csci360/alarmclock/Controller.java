@@ -22,7 +22,8 @@ public class Controller implements ControllerInterface{
     private boolean isMilitaryTime;
     private final Radio radio;
     private final String[] am_fm;
-    private String currentStation;
+    private String currentMod;
+    private int volume;
     
     
     public Controller(){
@@ -30,8 +31,9 @@ public class Controller implements ControllerInterface{
         this.soundingAlarm = null;
         this.alarm1 = new Alarm(this);
         this.alarm2 = new Alarm(this);
-        this.currentStation = am_fm[1];
+        this.currentMod = am_fm[1];
         this.radio = new Radio();
+        this.volume = this.radio.getVolume();
     }
     
     public void selectAlarm1(){
@@ -86,39 +88,53 @@ public class Controller implements ControllerInterface{
     
     //on off and volume control
     public void radioOn(){
-        this.radio.setOn(true);
+        this.radio.start();
         this.radio.playBroadcast();
     }
     
     public void radioOff(){
-        this.radio.setOn(false);
+        this.radio.stop();
     }
     
     public void radioVolumeUp(){
-        this.radio.incrementVolume();
+        if (this.radio.getOn()){
+            this.radio.incrementVolume();
+            this.radio.playBroadcast();
+            this.volume = this.radio.getVolume();
+        }
     }
     
     public void radioVolumeDown(){
-        this.radio.decrementVolume();
+        if (this.radio.getOn()){
+            this.radio.decrementVolume();
+            this.radio.playBroadcast();
+            this.volume = this.radio.getVolume();
+        }
     }  
     
     //receiver and station control
     
     public void switchRadioReceiver(){
-        this.radio.switchReceiver();
-        this.currentStation = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentStation)+1)%2];
-        this.radio.playBroadcast();
+        if (this.radio.getOn()){
+            this.radio.switchReceiver();
+            this.currentMod = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentMod)+1)%2];
+            this.radio.playBroadcast();
+        }
     }
     
     public void incrementStation(){
-        this.radio.nextStation();
-        this.radio.playBroadcast();
+        if (this.radio.getOn()){
+            this.radio.nextStation();
+            this.radio.playBroadcast();
+        }
     }
     
     public void decrementStation(){
-        this.radio.prevStation();
-        this.radio.playBroadcast();
+        if (this.radio.getOn()){
+            this.radio.prevStation();
+            this.radio.playBroadcast();
+        }
     }
-
+    
 }
 
