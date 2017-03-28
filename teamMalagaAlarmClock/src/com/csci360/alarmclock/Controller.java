@@ -3,6 +3,8 @@
  */
 package com.csci360.alarmclock;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Team-Malaga
@@ -18,14 +20,19 @@ public class Controller implements ControllerInterface{
     private boolean repeat;
     private boolean AMTruePMFalse;
     private boolean isMilitaryTime;
+    private final Radio radio;
+    private final String[] am_fm;
+    private String currentStation;
     
     
     public Controller(){
+        this.am_fm = new String[]{"AM", "FM"};
         this.soundingAlarm = null;
         this.alarm1 = new Alarm(this);
         this.alarm2 = new Alarm(this);
-        
-}
+        this.currentStation = am_fm[1];
+        this.radio = new Radio();
+    }
     
     public void selectAlarm1(){
         this.selectedAlarm = this.alarm1;
@@ -35,12 +42,12 @@ public class Controller implements ControllerInterface{
         this.selectedAlarm = this.alarm2;
     }
     
-
+    
     
     public void setHour(int h){
         this.hours = h;
     }
-    
+
     
     public void setMinute(int m){
         this.minutes = m;
@@ -78,4 +85,44 @@ public class Controller implements ControllerInterface{
         this.soundingAlarm.snoozeAlarm();
     }
     
+    
+    //radio methods
+    
+    //on off and volume control
+    public void radioOn(){
+        this.radio.setOn(true);
+        this.radio.playBroadcast();
+    }
+    
+    public void radioOff(){
+        this.radio.setOn(false);
+    }
+    
+    public void radioVolumeUp(){
+        this.radio.incrementVolume();
+    }
+    
+    public void radioVolumeDown(){
+        this.radio.decrementVolume();
+    }  
+    
+    //receiver and station control
+    
+    public void switchRadioReceiver(){
+        this.radio.switchReceiver();
+        this.currentStation = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentStation)+1)%2];
+        this.radio.playBroadcast();
+    }
+    
+    public void incrementStation(){
+        this.radio.nextStation();
+        this.radio.playBroadcast();
+    }
+    
+    public void decrementStation(){
+        this.radio.prevStation();
+        this.radio.playBroadcast();
+    }
+
 }
+
