@@ -53,6 +53,7 @@ public class BroadcastEmulator {
      * @return true if the frequency is a clear station, false otherwise
      */
     public boolean isAClearStation(int frequency){
+        Arrays.sort(clearStations);
         boolean contained = false; //default to not found
         if (Arrays.binarySearch(clearStations, frequency) >= 0){
             contained = true;                   //found in clear stations array

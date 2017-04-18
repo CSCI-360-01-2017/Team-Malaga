@@ -93,7 +93,6 @@ public class Controller implements ControllerInterface{
     //on off and volume control
     public void radioOn(){
         this.radio.start();
-        this.radio.playBroadcast();
     }
     
     public void radioOff(){
@@ -103,7 +102,6 @@ public class Controller implements ControllerInterface{
     public void radioVolumeUp(){
         if (this.radio.getOn()){
             this.radio.incrementVolume();
-            this.radio.playBroadcast();
             this.volume = this.radio.getVolume();
         }
     }
@@ -111,7 +109,6 @@ public class Controller implements ControllerInterface{
     public void radioVolumeDown(){
         if (this.radio.getOn()){
             this.radio.decrementVolume();
-            this.radio.playBroadcast();
             this.volume = this.radio.getVolume();
         }
     }  
@@ -119,26 +116,29 @@ public class Controller implements ControllerInterface{
     //receiver and station control
     
     public void switchRadioReceiver(){
-        if (this.radio.getOn()){
-            this.radio.switchReceiver();
-            this.currentMod = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentMod)+1)%2];
-            this.radio.playBroadcast();
-        }
+        this.radio.switchReceiver();
+        this.currentMod = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentMod)+1)%2];
     }
     
     public void incrementStation(){
         if (this.radio.getOn()){
             this.radio.nextStation();
-            this.radio.playBroadcast();
         }
     }
     
     public void decrementStation(){
         if (this.radio.getOn()){
             this.radio.prevStation();
-            this.radio.playBroadcast();
         }
     }
-    
+ 
+    public String playBroadcast(){
+        if (this.radio.getOn()){
+            return this.radio.playBroadcast();
+        }
+        else{
+            return "";
+        }
+    }
 }
 
