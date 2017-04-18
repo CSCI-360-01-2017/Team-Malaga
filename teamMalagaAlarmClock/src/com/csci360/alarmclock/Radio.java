@@ -143,9 +143,10 @@ public class Radio {
     
     /**
      * Emulate the playing of a radio station using a print statement.
+     * @return 
      */
-    public void playBroadcast(){
-        System.out.printf("Playing %s broadcast from station %s at volume %d\n", this.currentReceiver.getId(), this.currentReceiver.getCurrentFormattedString(), this.getVolume());       
+    public String playBroadcast(){
+        return String.format("Playing %s broadcast from station %s at volume %d\n", this.currentReceiver.getId(), this.currentReceiver.getCurrentFormattedString(), this.getVolume());       
     }
     
     /**

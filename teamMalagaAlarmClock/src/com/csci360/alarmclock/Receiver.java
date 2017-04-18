@@ -139,7 +139,7 @@ public class Receiver {
             
             if(broadcastEmulator.isAClearStation(curr)){
                 found = true;
-                current = curr;
+                this.current = curr;
             }
         }
     }
@@ -151,8 +151,9 @@ public class Receiver {
         boolean found = false;
         int curr = this.current;
         while(!found){
-            if( (curr - step) <= min){   //has min frequency been reached?
+            if( (curr - step) < min){   //has min frequency been reached?
                 curr = max;      //set to maximum
+                System.out.println(curr);
             }
             else{                   //if not, decrement by one step
                 curr = (curr - step);
