@@ -130,13 +130,13 @@ public class Receiver {
         boolean found = false;
         int curr= this.current;
         while(!found){
-            if((curr + step) >= max){   //has max frequency been reached?
-                curr = min;      //set to minimum
-            }
-            else{                   //if not, increment by one step
+            if((curr + step) < max){  //if not max, increment by one step
                 curr = (curr + step);
             }
-            
+            else{ //maxed out, stop the loop
+                found = true;
+            }
+            //check if new curr is a clear station
             if(broadcastEmulator.isAClearStation(curr)){
                 found = true;
                 this.current = curr;
@@ -151,12 +151,11 @@ public class Receiver {
         boolean found = false;
         int curr = this.current;
         while(!found){
-            if( (curr - step) < min){   //has min frequency been reached?
-                curr = max;      //set to maximum
-                System.out.println(curr);
-            }
-            else{                   //if not, decrement by one step
+            if ( (curr - step) >= min){   //min frequency has not been reached
                 curr = (curr - step);
+            }
+            else{ //at min, stop loop
+                found = true;
             }
             //check if new curr is a clear station
             if(broadcastEmulator.isAClearStation(curr)){
@@ -165,4 +164,5 @@ public class Receiver {
             }
         }
     }
+
 }
