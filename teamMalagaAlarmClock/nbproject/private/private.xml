@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/test/com/csci360/alarmclock/RadioTest.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/test/com/csci360/alarmclock/AlarmTest.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/Radio.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/AlarmClockRadio.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/Controller.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/ControllerInterface.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/BroadcastEmulator.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/Receiver.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/test/com/csci360/alarmclock/BroadcastEmulatorTest.java</file>
-            <file>file:/D:/git/360/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/Alarm.java</file>
-
+            <file>file:/Users/hotdog/Documents/Sync/gitten/alarmClock/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/FXML.fxml</file>
+            <file>file:/Users/hotdog/Documents/Sync/gitten/alarmClock/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/AlarmClockRadio.java</file>
+            <file>file:/Users/hotdog/Documents/Sync/gitten/alarmClock/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/FXMLController.java</file>
+            <file>file:/Users/hotdog/Documents/Sync/gitten/alarmClock/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/fxml.css</file>
+            <file>file:/Users/hotdog/Documents/Sync/gitten/alarmClock/Team-Malaga/teamMalagaAlarmClock/src/com/csci360/alarmclock/GUI.java</file>
         </group>
     </open-files>
 </project-private>
