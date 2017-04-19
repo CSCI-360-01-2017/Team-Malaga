@@ -4,6 +4,7 @@
 package com.csci360.alarmclock;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -24,9 +25,11 @@ public class Controller implements ControllerInterface{
     private final String[] am_fm;
     private String currentMod;
     private int volume;
+    private UITimingInterface ui;
+    private Clock clk;
     
-    
-    public Controller(){
+    public Controller(UITimingInterface uiInput){
+        this.ui = uiInput;
         this.am_fm = new String[]{"AM", "FM"};
         this.soundingAlarm = null;
         this.alarm1 = new Alarm(this);
@@ -34,6 +37,7 @@ public class Controller implements ControllerInterface{
         this.currentMod = am_fm[1];
         this.radio = new Radio();
         this.volume = this.radio.getVolume();
+        this.clk = new Clock(this);
     }
     
     public void selectAlarm1(){
@@ -139,6 +143,20 @@ public class Controller implements ControllerInterface{
         else{
             return "";
         }
+    }
+
+    public void updateTime(Calendar cal) {
+        if(isMilitaryTime){
+            this.ui.updateMilitaryTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
+        } else{
+            if(cal.get(Calendar.AM_PM) == Calendar.AM){
+                this.ui.updateAMPMTime(cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), true);
+            }else{
+                this.ui.updateAMPMTime(cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false);
+            }
+            
+        }
+        
     }
 }
 

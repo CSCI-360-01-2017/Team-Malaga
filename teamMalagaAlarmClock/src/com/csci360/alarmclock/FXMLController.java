@@ -5,18 +5,20 @@
  */
 package com.csci360.alarmclock;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
-public class FXMLController {
+public class FXMLController implements UITimingInterface {
 
     @FXML
-    private TextArea currenttimetext;
+    private Label currenttimetext;
 
     @FXML
     private RadioButton AMradio;
@@ -43,7 +45,7 @@ public class FXMLController {
     private Button volDown;
 
     @FXML
-    private TextArea radiotext;
+    private Label radiotext;
 
     @FXML
     private ToggleGroup hour;
@@ -99,8 +101,11 @@ public class FXMLController {
     private Controller controller;
 
     public FXMLController(){
-       controller = new Controller();
+       controller = new Controller(this);
+
     }
+    
+
     
     @FXML
     public void freqUp(ActionEvent event){
@@ -135,6 +140,8 @@ public class FXMLController {
     @FXML
     public void radioOn(ActionEvent event){
         this.controller.radioOn();
+        this.radiotext.setMaxWidth(200);
+        this.radiotext.setWrapText(true);
         this.radiotext.setText(this.controller.playBroadcast());
     }
 
@@ -143,5 +150,21 @@ public class FXMLController {
         this.controller.radioOff();
         this.radiotext.setText("");
     }
+
+
+    public void updateMilitaryTime(int hours, int minutes) {
+        this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes));
+    }
+
+
+    public void updateAMPMTime(int hours, int minutes, boolean isAM) {
+        if(isAM){
+            this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes) + " AM");
+        }
+        else{
+            this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes) + " PM");
+        }
+    }
+
 }
 
