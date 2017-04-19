@@ -151,8 +151,10 @@ public class Controller implements ControllerInterface{
         } else{
             if(cal.get(Calendar.AM_PM) == Calendar.AM){
                 this.ui.updateAMPMTime(cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), true);
+                setAMPM(true);
             }else{
                 this.ui.updateAMPMTime(cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false);
+                setAMPM(false);
             }
             
         }
