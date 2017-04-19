@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="685.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.alarmclock.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="685.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.alarmclock.FXMLController">
     <stylesheets>
         <URL value="@fxml.css" />
     </stylesheets>
@@ -25,6 +28,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="91.0" layoutX="117.0" layoutY="16.0" stroke="#c6c6c6" strokeType="INSIDE" width="366.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="144.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" width="685.0">
          <fill>
             <LinearGradient cycleMethod="REFLECT" endY="0.5144230769230769" startX="0.4567307692307693" startY="1.0">
@@ -41,12 +45,6 @@
             <ToggleGroup fx:id="hour" />
          </toggleGroup>
       </RadioButton>
-      <TextArea id="radioText" fx:id="radiotext" layoutX="35.0" layoutY="332.0" prefHeight="86.0" prefWidth="197.0" wrapText="true" />
-      <TextArea id="TimeText" fx:id="currenttimetext" layoutX="117.0" layoutY="16.0" prefHeight="86.0" prefWidth="366.0">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </TextArea>
       <TextArea id="alarm1Text" fx:id="alarm1text" layoutX="6.0" layoutY="117.0" prefHeight="38.0" prefWidth="122.0" />
       <TextArea id="alarm2Text" fx:id="alarm2text" layoutX="7.0" layoutY="209.0" prefHeight="38.0" prefWidth="122.0" />
       <Button id="radioVolUp" fx:id="volUp" layoutX="430.0" layoutY="382.0" mnemonicParsing="false" onAction="#volUp" text="&gt;&gt;" />
@@ -93,5 +91,12 @@
       </ToggleButton>
       <Button id="radioFreqUp" fx:id="setAlarm1" layoutX="135.0" layoutY="117.0" mnemonicParsing="false" text="Set Alarm 1" />
       <Button id="radioFreqUp" fx:id="setAlarm2" layoutX="134.0" layoutY="206.0" mnemonicParsing="false" text="Set Alarm 2" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="28.0" layoutY="339.0" stroke="#797979" strokeType="INSIDE" width="200.0" />
+      <Label id="radiotext" fx:id="radiotext" layoutX="39.0" layoutY="344.0" />
+      <Label id="TimeText" fx:id="currenttimetext" layoutX="174.0" layoutY="15.0" text="00:00 AM" textAlignment="CENTER">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

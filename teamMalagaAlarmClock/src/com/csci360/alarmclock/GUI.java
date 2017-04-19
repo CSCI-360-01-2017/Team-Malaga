@@ -38,11 +38,11 @@ import javafx.scene.paint.Color;
  *
  * @author bryce
  */
-public class GUI extends Application implements EventHandler<ActionEvent>{
+public class GUI extends Application implements EventHandler<ActionEvent>, UITimingInterface{
     //primaryStage.setMaximized(true);
     //primaryStage.setFullScreen(true);
     Radio radio = new Radio();
-    Controller controller = new Controller();
+    Controller controller = new Controller(this);
     
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
@@ -511,6 +511,18 @@ public class GUI extends Application implements EventHandler<ActionEvent>{
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+
+    @Override
+    public void updateMilitaryTime(int hours, int minutes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateAMPMTime(int hours, int minutes, boolean isAM) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

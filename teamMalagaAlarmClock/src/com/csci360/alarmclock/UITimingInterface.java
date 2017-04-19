@@ -5,14 +5,13 @@
  */
 package com.csci360.alarmclock;
 
-import java.util.Calendar;
-
 /**
  *
  * @author Eric
  */
-public interface ControllerInterface {
+public interface UITimingInterface {
     
-    public void soundAlarm(Alarm a);
-    public void updateTime(Calendar cal);
+    public void updateMilitaryTime(int hours, int minutes);
+    public void updateAMPMTime(int hours, int minutes, boolean isAM);
+    
 }
