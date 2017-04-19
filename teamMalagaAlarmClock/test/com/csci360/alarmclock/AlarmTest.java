@@ -20,9 +20,10 @@ public class AlarmTest {
     
     Alarm testingAlarm;
     Controller testingController;
+    UITimingInterface ui;
     
     public AlarmTest() {
-        this.testingController = new Controller();
+        this.testingController = new Controller(ui);
         this.testingAlarm = new Alarm(testingController);
     }
       

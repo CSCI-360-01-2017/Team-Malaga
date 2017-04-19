@@ -54,7 +54,7 @@ public class FXMLController implements UITimingInterface {
     private ToggleGroup radioonoff;
 
     @FXML
-    private TextArea alarm1text;
+    private Label alarm1text;
 
     @FXML
     private RadioButton a2repeat;
@@ -75,7 +75,7 @@ public class FXMLController implements UITimingInterface {
     private RadioButton a2enable;
 
     @FXML
-    private TextArea alarm2text;
+    private Label alarm2text;
 
     @FXML
     private Button setAlarm1;
@@ -150,10 +150,19 @@ public class FXMLController implements UITimingInterface {
         this.controller.radioOff();
         this.radiotext.setText("");
     }
-
+    
+    @FXML
+    public void toggleAMPM(ActionEvent event){
+        this.controller.setMilitaryTime(false);
+    }
+    
+    @FXML
+    public void toggle24Hour(ActionEvent event){
+        this.controller.setMilitaryTime(true);
+    }
 
     public void updateMilitaryTime(int hours, int minutes) {
-        this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes));
+        this.currenttimetext.setText("   "+String.format("%02d", hours) + ":"+String.format("%02d", minutes));
     }
 
 
