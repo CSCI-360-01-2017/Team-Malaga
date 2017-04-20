@@ -95,8 +95,8 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Label fx:id="alarm1text" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="158.0" text="No Alarm Set" textAlignment="CENTER" />
-      <Label fx:id="alarm2text" layoutX="33.0" layoutY="249.0" text="No Alarm Set" />
+      <Label fx:id="alarm1text" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="158.0" text="12:00 PM" textAlignment="CENTER" />
+      <Label fx:id="alarm2text" layoutX="33.0" layoutY="249.0" text="12:00 PM" />
       <Label fx:id="hourA1" layoutX="272.0" layoutY="192.0" text="12" />
       <Button id="radioFreqUp" fx:id="decHourA1" layoutX="230.0" layoutY="187.0" mnemonicParsing="false" onAction="#decrementHourA1" prefHeight="25.0" prefWidth="33.0" text="&lt;" />
       <Button id="radioFreqDown" fx:id="incHourA1" layoutX="294.0" layoutY="187.0" mnemonicParsing="false" onAction="#incrementHourA1" prefHeight="25.0" prefWidth="33.0" text="&gt;" />

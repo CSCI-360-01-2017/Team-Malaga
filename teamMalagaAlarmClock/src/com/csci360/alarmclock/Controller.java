@@ -42,6 +42,9 @@ public class Controller implements ControllerInterface{
         this.radio = new Radio();
         this.volume = this.radio.getVolume();
         this.clk = new Clock(this);
+        this.isA1AM = false;
+        this.isA2AM = false;
+        this.isMilitaryTime = false;
     }
     
     public void selectAlarm1(){

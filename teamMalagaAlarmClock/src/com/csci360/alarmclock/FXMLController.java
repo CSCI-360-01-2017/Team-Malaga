@@ -246,12 +246,14 @@ public class FXMLController implements UITimingInterface {
     public void setAlarm1(ActionEvent event){
         this.controller.setAlarm1();
         updateAlarm1Text();
+        this.a1enable.setSelected(true);
     }
 
     @FXML
     public void setAlarm2(ActionEvent event){
         this.controller.setAlarm2();
         updateAlarm2Text();
+        this.a1enable.setSelected(true);
     }
     
     private void updateAlarm1Text(){
@@ -410,8 +412,5 @@ public class FXMLController implements UITimingInterface {
             this.rectA1.setFill(Color.GREEN);
         }
     }
-    
-    
-
 }
 
