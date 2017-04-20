@@ -243,17 +243,55 @@ public class FXMLController implements UITimingInterface {
     }
     
     @FXML
+    public void enableA1(ActionEvent event){
+        if(this.a1enable.isSelected()){
+            this.controller.enableA1();
+        }else{
+            this.controller.disableA1();
+        }
+    }
+    
+    @FXML
+    public void enableA2(ActionEvent event){
+        if(this.a2enable.isSelected()){
+            this.controller.enableA2();
+        }else{
+            this.controller.disableA2();
+        }
+    }
+    
+    @FXML
+    public void repeatA1(ActionEvent event){
+        if(this.a1repeat.isSelected()){
+            this.controller.setRepeatA1(true);
+        }else{
+            this.controller.setRepeatA1(false);
+        }
+    }
+    
+    @FXML
+    public void repeatA2(ActionEvent event){
+        if(this.a2repeat.isSelected()){
+            this.controller.setRepeatA2(true);
+        }else{
+            this.controller.setRepeatA2(false);
+        }
+    }
+    
+    @FXML
     public void setAlarm1(ActionEvent event){
         this.controller.setAlarm1();
         updateAlarm1Text();
         this.a1enable.setSelected(true);
+        this.controller.enableA1();
     }
 
     @FXML
     public void setAlarm2(ActionEvent event){
         this.controller.setAlarm2();
         updateAlarm2Text();
-        this.a1enable.setSelected(true);
+        this.a2enable.setSelected(true);
+        this.controller.enableA2();
     }
     
     private void updateAlarm1Text(){
@@ -382,12 +420,14 @@ public class FXMLController implements UITimingInterface {
     public void silenceButton(ActionEvent event){
         this.rectA1.setFill(Color.WHITE);
         this.rectA2.setFill(Color.WHITE);
+        this.controller.silenceAlarm();
     }
     
     @FXML
     public void snoozeButton(ActionEvent event){
         this.rectA1.setFill(Color.WHITE);
         this.rectA2.setFill(Color.WHITE);
+        this.controller.snoozeAlarm();
     }
 
     public void updateMilitaryTime(int hours, int minutes) {
@@ -409,7 +449,7 @@ public class FXMLController implements UITimingInterface {
         if(alarmNum == 1){
             this.rectA1.setFill(Color.GREEN);
         }else{
-            this.rectA1.setFill(Color.GREEN);
+            this.rectA2.setFill(Color.GREEN);
         }
     }
 }

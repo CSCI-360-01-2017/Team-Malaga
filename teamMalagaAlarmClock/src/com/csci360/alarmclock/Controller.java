@@ -12,7 +12,8 @@ import java.util.Calendar;
  */
 public class Controller implements ControllerInterface{
     
-    private Alarm soundingAlarm;
+    private boolean isSoundingA1;
+    private boolean isSoundingA2;
     private Alarm alarm1;
     private Alarm alarm2;
     private Alarm selectedAlarm;
@@ -35,7 +36,6 @@ public class Controller implements ControllerInterface{
     public Controller(UITimingInterface uiInput){
         this.ui = uiInput;
         this.am_fm = new String[]{"AM", "FM"};
-        this.soundingAlarm = null;
         this.alarm1 = new Alarm(this);
         this.alarm2 = new Alarm(this);
         this.currentMod = am_fm[1];
@@ -45,6 +45,8 @@ public class Controller implements ControllerInterface{
         this.isA1AM = false;
         this.isA2AM = false;
         this.isMilitaryTime = false;
+        this.isSoundingA1 = false;
+        this.isSoundingA2 = false;
     }
     
     public void selectAlarm1(){
@@ -54,8 +56,6 @@ public class Controller implements ControllerInterface{
     public void selectAlarm2(){
         this.selectedAlarm = this.alarm2;
     }
-    
-    
     
     public void setHourA1(int h){
         this.hoursA1 = h;
@@ -128,8 +128,7 @@ public class Controller implements ControllerInterface{
             if(this.hoursA2>0){
                 this.hoursA2--;
             }
-        }
-        else{
+        }else{
             if(this.hoursA2>1){
                 this.hoursA2--;
             }
@@ -141,8 +140,7 @@ public class Controller implements ControllerInterface{
             if(this.hoursA2<23){
                 this.hoursA2++;
             }
-        }
-        else{
+        }else{
             if(this.hoursA2<12){
                 this.hoursA2++;
             }
@@ -160,6 +158,41 @@ public class Controller implements ControllerInterface{
             this.minutesA2++;
         }
     }
+    
+    public void enableA1(){
+        this.alarm1.enableAlarm();
+    }
+    
+    public void enableA2(){
+        this.alarm2.enableAlarm();
+    }
+    
+    public void setRepeatA1(boolean repeat){
+        this.alarm1.setRepeat(repeat);
+    }
+    
+    public void setRepeatA2(boolean repeat){
+        this.alarm2.setRepeat(repeat);
+    }
+    
+    public void silenceA1(){
+        this.alarm1.silenceAlarm();
+    }
+    
+    public void silenceA2(){
+        this.alarm2.silenceAlarm();
+    }
+    
+    public void disableA1(){
+        this.alarm1.disableAlarm();
+    }
+    
+    public void disableA2(){
+        this.alarm2.disableAlarm();
+    }
+    
+    
+    
     
     public void setRepeat(boolean r){
         this.repeat = r;
@@ -216,32 +249,41 @@ public class Controller implements ControllerInterface{
     }
     
     public void setAlarm1(){
-        this.alarm1.createAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm1.setAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
     }
     
     public void setAlarm2(){
-        this.alarm2.createAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm2.setAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
     }
+    
     public void soundAlarm(Alarm a){
-        this.soundingAlarm = a;
         if(a == this.alarm1){
             this.ui.soundAlarm(1);
+            this.isSoundingA1 = true;
         }
         else{
             this.ui.soundAlarm(2);
+            this.isSoundingA2 = true;
         }
     }
     
-    public Alarm getSoundingAlarm(){
-        return this.soundingAlarm;
-    }
 
-    public void disableAlarm(){
-        this.selectedAlarm.disableAlarm();
+    public void silenceAlarm(){
+        if(this.isSoundingA1){
+            this.alarm1.disableAlarm();
+        }
+        if(this.isSoundingA2){
+            this.alarm2.disableAlarm();
+        }
     }
     
     public void snoozeAlarm(){
-        this.soundingAlarm.snoozeAlarm();
+        if(this.isSoundingA1){
+            this.alarm1.snoozeAlarm();
+        }
+        if(this.isSoundingA2){
+            this.alarm2.snoozeAlarm();
+        }
     }
     
     
@@ -309,9 +351,7 @@ public class Controller implements ControllerInterface{
                 this.ui.updateAMPMTime(cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false);
                 setAMPM(false);
             }
-            
         }
-        
     }
 }
 

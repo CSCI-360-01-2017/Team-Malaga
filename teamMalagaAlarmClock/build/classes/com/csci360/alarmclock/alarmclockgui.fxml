@@ -63,10 +63,10 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <RadioButton id="Alarm1Enable" fx:id="a1enable" layoutX="135.0" layoutY="182.0" mnemonicParsing="false" text="Enabled" />
-      <RadioButton id="Alarm1Repeat" fx:id="a1repeat" layoutX="135.0" layoutY="206.0" mnemonicParsing="false" text="Repeat" />
-      <RadioButton id="Alarm2Repeat" fx:id="a2repeat" layoutX="135.0" layoutY="298.0" mnemonicParsing="false" text="Repeat" />
-      <RadioButton id="Alarm2Enable" fx:id="a2enable" layoutX="135.0" layoutY="274.0" mnemonicParsing="false" text="Enabled" />
+      <RadioButton id="Alarm1Enable" fx:id="a1enable" layoutX="135.0" layoutY="182.0" mnemonicParsing="false" onAction="#enableA1" text="Enabled" />
+      <RadioButton id="Alarm1Repeat" fx:id="a1repeat" layoutX="135.0" layoutY="206.0" mnemonicParsing="false" onAction="#repeatA1" text="Repeat" />
+      <RadioButton id="Alarm2Repeat" fx:id="a2repeat" layoutX="135.0" layoutY="298.0" mnemonicParsing="false" onAction="#repeatA2" text="Repeat" />
+      <RadioButton id="Alarm2Enable" fx:id="a2enable" layoutX="135.0" layoutY="274.0" mnemonicParsing="false" onAction="#enableA2" text="Enabled" />
       <RadioButton id="Alarm1Enable" fx:id="AMradio" layoutX="244.0" layoutY="382.0" mnemonicParsing="false" onAction="#switchReceiver" selected="true" text="AM" textFill="WHITE">
          <toggleGroup>
             <ToggleGroup fx:id="amfm" />
@@ -103,7 +103,6 @@
       <Label fx:id="minA1" layoutX="410.0" layoutY="192.0" text="00" />
       <Button id="radioFreqUp" fx:id="decMinA1" layoutX="366.0" layoutY="188.0" mnemonicParsing="false" onAction="#decrementMinA1" prefHeight="25.0" prefWidth="33.0" text="&lt;" />
       <Button id="radioFreqDown" fx:id="incMinA1" layoutX="432.0" layoutY="188.0" mnemonicParsing="false" onAction="#incrementMinA1" prefHeight="25.0" prefWidth="33.0" text="&gt;" />
-      <Slider blockIncrement="1.0" layoutX="340.0" layoutY="456.0" max="11.0" value="5.0" />
       <Label layoutX="266.0" layoutY="153.0" text="Hour" />
       <Label layoutX="397.0" layoutY="153.0" text="Minute" />
       <Label fx:id="hourA2" layoutX="272.0" layoutY="263.0" text="12" />
