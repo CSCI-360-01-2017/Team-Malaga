@@ -29,6 +29,8 @@ public class Controller implements ControllerInterface{
     private int volume;
     private UITimingInterface ui;
     private Clock clk;
+    private boolean isA1AM;
+    private boolean isA2AM;
     
     public Controller(UITimingInterface uiInput){
         this.ui = uiInput;
@@ -164,8 +166,50 @@ public class Controller implements ControllerInterface{
         this.AMTruePMFalse = ap;
     }
     
+    public void setA1AM(boolean A1AM){
+        this.isA1AM = A1AM;
+    }
+    public void setA2AM(boolean A2AM){
+        this.isA2AM = A2AM;
+    }
+    public boolean isA1AM(){
+        return this.isA1AM;
+    }
+    public boolean isA2AM(){
+        return this.isA2AM;
+    }
+    
     public void setMilitaryTime(boolean mt){
+        if(mt){ //set it to military time, need to add 12 if currently in PM
+            if(!this.isA1AM && this.hoursA1 != 12){  //if pm add 12
+                this.hoursA1 += 12;
+            }
+            else if(this.isA1AM && this.hoursA1 == 12){ // if am and 12, aka midnight, subtract 12
+                this.hoursA1 -=12;
+            }
+            if(!this.isA2AM && this.hoursA2 != 12){  //if pm add 12
+                this.hoursA2 += 12;
+            }
+            else if(this.isA2AM && this.hoursA2 == 12){ // if am and 12, aka midnight, subtract 12
+                this.hoursA2 -=12;
+            }
+        }
+        else{ //set it to AM/PM, need to subtract 12 if hours > 12
+            if(this.hoursA1 > 12){
+                this.hoursA1 -= 12;
+                this.isA1AM = false;
+            }
+            if(this.hoursA2 > 12){
+                this.hoursA2 -= 12;
+                this.isA2AM = false;
+            }
+            
+        }
         this.isMilitaryTime = mt;
+    }
+    
+    public boolean isMilitaryTime(){
+        return this.isMilitaryTime;
     }
     
     public void setAlarm1(){
@@ -177,6 +221,12 @@ public class Controller implements ControllerInterface{
     }
     public void soundAlarm(Alarm a){
         this.soundingAlarm = a;
+        if(a == this.alarm1){
+            this.ui.soundAlarm(1);
+        }
+        else{
+            this.ui.soundAlarm(2);
+        }
     }
     
     public Alarm getSoundingAlarm(){

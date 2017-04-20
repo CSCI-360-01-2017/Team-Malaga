@@ -28,8 +28,8 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="7.0" layoutY="238.0" stroke="#a1a1a1" strokeType="INSIDE" width="122.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="7.0" layoutY="147.0" stroke="#a1a1a1" strokeType="INSIDE" width="122.0" />
+      <Rectangle fx:id="rectA2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="7.0" layoutY="238.0" stroke="#a1a1a1" strokeType="INSIDE" width="122.0" />
+      <Rectangle fx:id="rectA1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="7.0" layoutY="147.0" stroke="#a1a1a1" strokeType="INSIDE" width="122.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="116.0" layoutX="117.0" layoutY="16.0" stroke="#c6c6c6" strokeType="INSIDE" width="366.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="144.0" layoutY="333.0" stroke="BLACK" strokeType="INSIDE" width="685.0">
          <fill>
@@ -53,12 +53,12 @@
       <Label layoutX="375.0" layoutY="382.0" text="Frequency" textFill="WHITE" />
       <Button id="radioFreqUp" fx:id="freqDown" layoutX="335.0" layoutY="377.0" mnemonicParsing="false" onAction="#freqDown" text="&lt;&lt;" />
       <Button id="radioFreqDown" fx:id="freqUp" layoutX="447.0" layoutY="377.0" mnemonicParsing="false" onAction="#freqUp" text="&gt;&gt;" />
-      <Button id="Snooze Button" fx:id="snoozebutton" layoutX="493.0" layoutY="7.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="156.0" text="SNOOZE" textFill="RED">
+      <Button id="Snooze Button" fx:id="snoozebutton" layoutX="493.0" layoutY="7.0" mnemonicParsing="false" onAction="#snoozeButton" prefHeight="52.0" prefWidth="156.0" text="SNOOZE" textFill="RED">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Button id="AMFMButton" fx:id="silencebutton" layoutX="493.0" layoutY="76.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="156.0" text="SILENCE">
+      <Button id="AMFMButton" fx:id="silencebutton" layoutX="493.0" layoutY="76.0" mnemonicParsing="false" onAction="#silenceButton" prefHeight="65.0" prefWidth="156.0" text="SILENCE">
          <font>
             <Font size="30.0" />
          </font>
@@ -112,18 +112,18 @@
       <Label fx:id="minA2" layoutX="410.0" layoutY="264.0" text="00" />
       <Button id="radioFreqUp" fx:id="decMinA2" layoutX="366.0" layoutY="260.0" mnemonicParsing="false" onAction="#decrementMinA2" prefHeight="25.0" prefWidth="33.0" text="&lt;" />
       <Button id="radioFreqDown" fx:id="incMinA2" layoutX="432.0" layoutY="260.0" mnemonicParsing="false" onAction="#incrementMinA2" prefHeight="25.0" prefWidth="33.0" text="&gt;" />
-      <RadioButton id="24Hour" fx:id="am1" layoutX="500.0" layoutY="178.0" mnemonicParsing="false" onAction="#toggleAMPM" selected="true" text="AM">
+      <RadioButton id="24Hour" fx:id="am1" layoutX="500.0" layoutY="178.0" mnemonicParsing="false" onAction="#toggleAM1" selected="true" text="AM">
          <toggleGroup>
             <ToggleGroup fx:id="alarm1AMPM" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton id="24Hour" fx:id="pm1" layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onAction="#toggleAMPM" selected="true" text="PM" toggleGroup="$alarm1AMPM" />
-      <RadioButton id="24Hour" fx:id="am2" layoutX="500.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleAMPM" selected="true" text="AM">
+      <RadioButton id="24Hour" fx:id="pm1" layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onAction="#togglePM1" selected="true" text="PM" toggleGroup="$alarm1AMPM" />
+      <RadioButton id="24Hour" fx:id="am2" layoutX="500.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleAM2" selected="true" text="AM">
          <toggleGroup>
             <ToggleGroup fx:id="alarm2AMPM" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton id="24Hour" fx:id="pm2" layoutX="500.0" layoutY="277.0" mnemonicParsing="false" onAction="#toggleAMPM" selected="true" text="PM" toggleGroup="$alarm2AMPM" />
+      <RadioButton id="24Hour" fx:id="pm2" layoutX="500.0" layoutY="277.0" mnemonicParsing="false" onAction="#togglePM2" selected="true" text="PM" toggleGroup="$alarm2AMPM" />
       <Slider blockIncrement="1.0" layoutX="568.0" layoutY="269.0" max="11.0" prefHeight="14.0" prefWidth="100.0" value="5.0" />
       <Slider blockIncrement="1.0" layoutX="568.0" layoutY="193.0" max="11.0" prefHeight="14.0" prefWidth="100.0" value="5.0" />
       <Label layoutX="579.0" layoutY="153.0" text="Alarm Volume" />

@@ -14,6 +14,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class FXMLController implements UITimingInterface {
 
@@ -140,15 +142,15 @@ public class FXMLController implements UITimingInterface {
     private RadioButton am2;
     @FXML
     private RadioButton pm2;
+    @FXML
+    private Rectangle rectA1;
+    @FXML
+    private Rectangle rectA2;
     
     private Controller controller;
 
     
-    int alarm1Hour;
-    int alarm2Hour;
     boolean alarm1isAM;
-    int alarm1Min;
-    int alarm2Min;
     boolean alarm2isAM;
     
     public FXMLController(){
@@ -243,13 +245,41 @@ public class FXMLController implements UITimingInterface {
     @FXML
     public void setAlarm1(ActionEvent event){
         this.controller.setAlarm1();
-        this.alarm1text.setText(String.format("%02d", this.alarm1Hour) + ":"+String.format("%02d", this.alarm1Min));
+        updateAlarm1Text();
     }
 
     @FXML
     public void setAlarm2(ActionEvent event){
         this.controller.setAlarm2();
-        this.alarm2text.setText(String.format("%02d", this.alarm2Hour) + ":"+String.format("%02d", this.alarm2Min));
+        updateAlarm2Text();
+    }
+    
+    private void updateAlarm1Text(){
+        if(this.controller.isMilitaryTime()){
+            this.alarm1text.setText(String.format("%02d", this.controller.getHourA1()) + ":"+String.format("%02d", this.controller.getMinuteA1()));
+        }
+        else{
+            if(this.controller.isA1AM()){
+                this.alarm1text.setText(String.format("%02d", this.controller.getHourA1()) + ":"+String.format("%02d", this.controller.getMinuteA1())+" AM");
+            }
+            else{
+                this.alarm1text.setText(String.format("%02d", this.controller.getHourA1()) + ":"+String.format("%02d", this.controller.getMinuteA1())+" PM");
+            }  
+        }
+    }
+    
+    private void updateAlarm2Text(){
+        if(this.controller.isMilitaryTime()){
+            this.alarm2text.setText(String.format("%02d", this.controller.getHourA2()) + ":"+String.format("%02d", this.controller.getMinuteA2()));
+        }
+        else{
+            if(this.controller.isA2AM()){
+                this.alarm2text.setText(String.format("%02d", this.controller.getHourA2()) + ":"+String.format("%02d", this.controller.getMinuteA2())+" AM");
+            }
+            else{
+                this.alarm2text.setText(String.format("%02d", this.controller.getHourA2()) + ":"+String.format("%02d", this.controller.getMinuteA2())+" PM");
+            }  
+        }
     }
     
     
@@ -298,12 +328,26 @@ public class FXMLController implements UITimingInterface {
     }
     
     @FXML
+    public void toggleAM1(ActionEvent event){
+        this.controller.setA1AM(true);
+    }
+    @FXML
+    public void togglePM1(ActionEvent event){
+        this.controller.setA1AM(false);
+    }
+    @FXML
+    public void toggleAM2(ActionEvent event){
+        this.controller.setA2AM(true);
+    }
+    @FXML
+    public void togglePM2(ActionEvent event){
+        this.controller.setA2AM(false);
+    }
+    
+    
+    @FXML
     public void toggleAMPM(ActionEvent event){
         this.controller.setMilitaryTime(false);
-        this.controller.setHourA1(12);
-        this.controller.setMinuteA1(0);
-        this.controller.setHourA2(12);
-        this.controller.setMinuteA2(0);
         this.hourA1.setText(String.format("%02d", this.controller.getHourA1()));
         this.minA1.setText(String.format("%02d", this.controller.getMinuteA1()));
         this.hourA2.setText(String.format("%02d", this.controller.getHourA2()));
@@ -312,14 +356,13 @@ public class FXMLController implements UITimingInterface {
         this.pm1.setDisable(false);
         this.am2.setDisable(false);
         this.pm2.setDisable(false);
+        updateAlarm1Text();
+        updateAlarm2Text();
     }
+    
     
     @FXML
     public void toggle24Hour(ActionEvent event){
-        this.controller.setHourA1(12);
-        this.controller.setMinuteA1(0);
-        this.controller.setHourA2(12);
-        this.controller.setMinuteA2(0);
         this.controller.setMilitaryTime(true);
         this.hourA1.setText(String.format("%02d", this.controller.getHourA1()));
         this.minA1.setText(String.format("%02d", this.controller.getMinuteA1()));
@@ -329,6 +372,20 @@ public class FXMLController implements UITimingInterface {
         this.pm1.setDisable(true);
         this.am2.setDisable(true);
         this.pm2.setDisable(true);
+        updateAlarm1Text();
+        updateAlarm2Text();
+    }
+    
+    @FXML
+    public void silenceButton(ActionEvent event){
+        this.rectA1.setFill(Color.WHITE);
+        this.rectA2.setFill(Color.WHITE);
+    }
+    
+    @FXML
+    public void snoozeButton(ActionEvent event){
+        this.rectA1.setFill(Color.WHITE);
+        this.rectA2.setFill(Color.WHITE);
     }
 
     public void updateMilitaryTime(int hours, int minutes) {
@@ -344,6 +401,17 @@ public class FXMLController implements UITimingInterface {
             this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes) + " PM");
         }
     }
+    
+    @Override
+    public void soundAlarm(int alarmNum){
+        if(alarmNum == 1){
+            this.rectA1.setFill(Color.GREEN);
+        }else{
+            this.rectA1.setFill(Color.GREEN);
+        }
+    }
+    
+    
 
 }
 
