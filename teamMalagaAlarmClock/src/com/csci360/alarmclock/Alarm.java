@@ -9,6 +9,7 @@ package com.csci360.alarmclock;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Date;
+import javafx.application.Platform;
 
 /**
  *
@@ -112,15 +113,7 @@ public class Alarm {
 
     }
     
-    /**
-     * an alarm is created to sound at a set number of hours and minutes
-     * within the next 24 hours.
-     */
-    public void createAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
-        this.repeat = repeat;
-        alarmTime = new Date();
-        this.disableAlarm = false;
-        
+    private void generateAlarmTime(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
         if (isMilitaryTime){
             alarmTime.setHours(hours);
             alarmTime.setMinutes(minutes);
@@ -145,6 +138,24 @@ public class Alarm {
                 }
             }
         }
+    }
+    
+    public void updateAlarm(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
+        generateAlarmTime(hours, minutes, AMTruePMFalse, isMilitaryTime);
+        this.timer.cancel();
+        createOffset();
+    }
+    
+    /**
+     * an alarm is created to sound at a set number of hours and minutes
+     * within the next 24 hours.
+     */
+    public void createAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
+        this.repeat = repeat;
+        alarmTime = new Date();
+        this.disableAlarm = false;
+        generateAlarmTime(hours, minutes, AMTruePMFalse, isMilitaryTime);
+
         snoozeTime = alarmTime;
 
         createOffset();
@@ -155,12 +166,17 @@ public class Alarm {
      * the time until the alarm sounds is dictated through a Timer.
      */
     private void createOffset(){
+        System.out.println(alarmTime.getHours());
+        System.out.println(alarmTime.getMinutes());
         this.timer = new Timer();
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                activate();
+                Platform.runLater(() -> {
+                    activate();
+                    System.out.println("alarm activated");
+                });
             }
         }, alarmTime);
     }
