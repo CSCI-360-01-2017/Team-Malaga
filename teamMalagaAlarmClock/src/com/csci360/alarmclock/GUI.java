@@ -524,5 +524,10 @@ public class GUI extends Application implements EventHandler<ActionEvent>, UITim
     public void updateAMPMTime(int hours, int minutes, boolean isAM) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void soundAlarm(int alarmNum) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

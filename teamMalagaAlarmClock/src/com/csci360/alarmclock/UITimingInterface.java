@@ -13,5 +13,6 @@ public interface UITimingInterface {
     
     public void updateMilitaryTime(int hours, int minutes);
     public void updateAMPMTime(int hours, int minutes, boolean isAM);
+    public void soundAlarm(int alarmNum);
     
 }

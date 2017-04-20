@@ -23,6 +23,7 @@ public class Alarm {
     private Date alarmTime;
     private boolean disableAlarm;
     private Date snoozeTime;
+    private Timer timer;
     
     /**
      *
@@ -44,6 +45,7 @@ public class Alarm {
      */
     public void disableAlarm(){
         this.disableAlarm = true;
+        this.timer.cancel();
     }
     
     
@@ -59,6 +61,7 @@ public class Alarm {
         alarmTime = snoozeTime;
         createOffset();
         alarmTime = tempTime;
+        timer = new Timer();
                 
             
     }
@@ -152,7 +155,7 @@ public class Alarm {
      * the time until the alarm sounds is dictated through a Timer.
      */
     private void createOffset(){
-        Timer timer = new Timer();
+        this.timer = new Timer();
         timer.schedule(new TimerTask() {
 
             @Override
