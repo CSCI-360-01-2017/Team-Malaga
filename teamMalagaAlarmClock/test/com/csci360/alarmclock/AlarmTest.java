@@ -75,7 +75,7 @@ public class AlarmTest {
         boolean repeat = false;
         boolean AMTruePMFalse = true;
         boolean isMilitaryTime = false;
-        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        testingAlarm.setAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
         assertEquals(hours, testingAlarm.getAlarmTime().getHours());
         assertEquals(minutes, testingAlarm.getAlarmTime().getMinutes());
         assertEquals(repeat, testingAlarm.isRepeat());
@@ -92,7 +92,7 @@ public class AlarmTest {
         boolean repeat = true;
         boolean AMTruePMFalse = false;
         boolean isMilitaryTime = true;
-        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        testingAlarm.setAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
         assertEquals(hours, testingAlarm.getAlarmTime().getHours());
         assertEquals(minutes, testingAlarm.getAlarmTime().getMinutes());
         assertEquals(repeat, testingAlarm.isRepeat());
@@ -109,7 +109,7 @@ public class AlarmTest {
         boolean repeat = false;
         boolean AMTruePMFalse = true;
         boolean isMilitaryTime = false;
-        testingAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+        testingAlarm.setAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
         assertEquals(hours, testingAlarm.getSnoozeTime().getHours());
         assertEquals(minutes, testingAlarm.getSnoozeTime().getMinutes());
         assertEquals(repeat, testingAlarm.isRepeat());

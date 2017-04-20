@@ -12,6 +12,7 @@ import java.util.Calendar;
  */
 public class Controller implements ControllerInterface{
     
+    private Alarm soundingAlarm;
     private boolean isSoundingA1;
     private boolean isSoundingA2;
     private Alarm alarm1;
@@ -47,6 +48,11 @@ public class Controller implements ControllerInterface{
         this.isMilitaryTime = false;
         this.isSoundingA1 = false;
         this.isSoundingA2 = false;
+        this.soundingAlarm = null;
+    }
+    
+    public Alarm getSoundingAlarm(){
+        return this.soundingAlarm;
     }
     
     public void selectAlarm1(){
@@ -257,6 +263,7 @@ public class Controller implements ControllerInterface{
     }
     
     public void soundAlarm(Alarm a){
+        this.soundingAlarm = a;
         if(a == this.alarm1){
             this.ui.soundAlarm(1);
             this.isSoundingA1 = true;

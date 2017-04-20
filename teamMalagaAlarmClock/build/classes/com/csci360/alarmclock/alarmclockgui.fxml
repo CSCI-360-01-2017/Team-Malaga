@@ -47,12 +47,12 @@
             <ToggleGroup fx:id="hour" />
          </toggleGroup>
       </RadioButton>
-      <Button id="radioVolUp" fx:id="volUp" layoutX="430.0" layoutY="420.0" mnemonicParsing="false" onAction="#volUp" text="&gt;&gt;" />
+      <Button id="radioVolUp" fx:id="volUp" layoutX="438.0" layoutY="420.0" mnemonicParsing="false" onAction="#volUp" text="&gt;&gt;" />
       <Button id="radioVolDown" fx:id="volDown" layoutX="336.0" layoutY="420.0" mnemonicParsing="false" onAction="#volDown" text="&lt;&lt;" />
-      <Label layoutX="375.0" layoutY="425.0" text="Volume" textFill="WHITE" />
+      <Label layoutX="382.0" layoutY="425.0" text="Volume" textFill="WHITE" />
       <Label layoutX="375.0" layoutY="382.0" text="Frequency" textFill="WHITE" />
       <Button id="radioFreqUp" fx:id="freqDown" layoutX="335.0" layoutY="377.0" mnemonicParsing="false" onAction="#freqDown" text="&lt;&lt;" />
-      <Button id="radioFreqDown" fx:id="freqUp" layoutX="447.0" layoutY="377.0" mnemonicParsing="false" onAction="#freqUp" text="&gt;&gt;" />
+      <Button id="radioFreqDown" fx:id="freqUp" layoutX="438.0" layoutY="377.0" mnemonicParsing="false" onAction="#freqUp" text="&gt;&gt;" />
       <Button id="Snooze Button" fx:id="snoozebutton" layoutX="493.0" layoutY="7.0" mnemonicParsing="false" onAction="#snoozeButton" prefHeight="52.0" prefWidth="156.0" text="SNOOZE" textFill="RED">
          <font>
             <Font size="30.0" />
