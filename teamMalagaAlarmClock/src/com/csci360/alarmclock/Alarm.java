@@ -131,6 +131,9 @@ public class Alarm {
     }
     
     public void enableAlarm(){
+        if(this.isEnabled){
+            this.timer.cancel();
+        }
         this.isEnabled = true;
         generateAlarmTime(alarmTime.getHours(), alarmTime.getMinutes(), false, true);
         createOffset();
@@ -177,6 +180,10 @@ public class Alarm {
      */
     public void setAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
         this.repeat = repeat;
+        if(this.isEnabled){
+            this.timer.cancel();
+        }
+
         alarmTime = new Date();
         this.disableAlarm = false;
         this.isEnabled = true;
