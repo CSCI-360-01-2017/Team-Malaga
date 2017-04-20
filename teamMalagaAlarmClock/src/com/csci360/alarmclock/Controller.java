@@ -16,8 +16,10 @@ public class Controller implements ControllerInterface{
     private Alarm alarm1;
     private Alarm alarm2;
     private Alarm selectedAlarm;
-    private int hours;
-    private int minutes;
+    private int hoursA1;
+    private int minutesA1;
+    private int hoursA2;
+    private int minutesA2;
     private boolean repeat;
     private boolean AMTruePMFalse;
     private boolean isMilitaryTime;
@@ -50,13 +52,108 @@ public class Controller implements ControllerInterface{
     
     
     
-    public void setHour(int h){
-        this.hours = h;
+    public void setHourA1(int h){
+        this.hoursA1 = h;
+    }
+    
+    public void setMinuteA1(int m){
+        this.minutesA1 = m;
+    }
+    public void setHourA2(int h){
+        this.hoursA2 = h;
+    }
+    
+    public void setMinuteA2(int m){
+        this.minutesA2 = m;
+    }
+    public int getHourA1(){
+        return this.hoursA1;
+    }
+    
+    public int getMinuteA1(){
+        return this.minutesA1;
+    }
+    public int getHourA2(){
+        return this.hoursA2;
+    }
+    
+    public int getMinuteA2(){
+        return this.minutesA2;
+    }
+    
+    public void decrementHourA1(){
+        if(this.isMilitaryTime){
+            if(this.hoursA1>0){
+                this.hoursA1--;
+            }
+        }
+        else{
+            if(this.hoursA1>1){
+                this.hoursA1--;
+            }
+        }
+    }
+    
+    public void incrementHourA1(){
+        if(this.isMilitaryTime){
+            if(this.hoursA1<23){
+                this.hoursA1++;
+            }
+        }
+        else{
+            if(this.hoursA1<12){
+                this.hoursA1++;
+            }
+        }
     }
 
+    public void decrementMinA1(){
+        if(this.minutesA1>0){
+            this.minutesA1--;
+        }
+    }
     
-    public void setMinute(int m){
-        this.minutes = m;
+    public void incrementMinA1(){
+        if(this.minutesA1<59){
+            this.minutesA1++;
+        }
+    }
+    public void decrementHourA2(){
+        if(this.isMilitaryTime){
+            if(this.hoursA2>0){
+                this.hoursA2--;
+            }
+        }
+        else{
+            if(this.hoursA2>1){
+                this.hoursA2--;
+            }
+        }
+    }
+    
+    public void incrementHourA2(){
+        if(this.isMilitaryTime){
+            if(this.hoursA2<23){
+                this.hoursA2++;
+            }
+        }
+        else{
+            if(this.hoursA2<12){
+                this.hoursA2++;
+            }
+        }
+    }
+
+    public void decrementMinA2(){
+        if(this.minutesA2>0){
+            this.minutesA2--;
+        }
+    }
+    
+    public void incrementMinA2(){
+        if(this.minutesA2<59){
+            this.minutesA2++;
+        }
     }
     
     public void setRepeat(boolean r){
@@ -71,10 +168,13 @@ public class Controller implements ControllerInterface{
         this.isMilitaryTime = mt;
     }
     
-    public void setAlarm(){
-        this.selectedAlarm.createAlarm(hours, minutes, repeat, AMTruePMFalse, isMilitaryTime);
+    public void setAlarm1(){
+        this.alarm1.createAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
     }
     
+    public void setAlarm2(){
+        this.alarm2.createAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
+    }
     public void soundAlarm(Alarm a){
         this.soundingAlarm = a;
     }

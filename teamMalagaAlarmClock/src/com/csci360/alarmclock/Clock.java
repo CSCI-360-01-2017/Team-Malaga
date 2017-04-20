@@ -16,7 +16,7 @@ import javafx.application.Platform;
  */
 public class Clock {
     private ControllerInterface sysController;
-    static final int CLOCK_UPDATE_TIME = 1000;
+    static final int CLOCK_UPDATE_TIME = 500;
     
     public Clock(ControllerInterface c){
         this.sysController = c;
