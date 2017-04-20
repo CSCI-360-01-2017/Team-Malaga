@@ -421,7 +421,7 @@ public class GUI extends Application implements EventHandler<ActionEvent>, UITim
     @Override
     public void handle(ActionEvent event){
         if(event.getSource() == silenceButton){
-            controller.disableAlarm();
+  
         }
         if(event.getSource() == snoozeButton){
             controller.snoozeAlarm();

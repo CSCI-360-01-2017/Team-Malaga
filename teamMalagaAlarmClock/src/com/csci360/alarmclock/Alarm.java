@@ -22,6 +22,8 @@ public class Alarm {
     private boolean repeat;
     private ControllerInterface sysController;
     private Date alarmTime;
+    private boolean isEnabled;
+    private boolean isSounding;
     private boolean disableAlarm;
     private Date snoozeTime;
     private Timer timer;
@@ -35,6 +37,12 @@ public class Alarm {
         this.sysController = c;
         this.repeat = false;
         this.disableAlarm = false;
+        this.isEnabled = false;
+        this.isSounding = false;
+        alarmTime = new Date();
+        alarmTime.setHours(12);
+        alarmTime.setMinutes(0);
+        alarmTime.setSeconds(0);
         
     }
     
@@ -46,9 +54,17 @@ public class Alarm {
      */
     public void disableAlarm(){
         this.disableAlarm = true;
+        this.isEnabled = false;
         this.timer.cancel();
     }
     
+    
+    public void silenceAlarm(){
+        this.isSounding = false;
+        if(!this.repeat){
+            this.timer.cancel();
+        }
+    }
     
     
     /**
@@ -56,6 +72,7 @@ public class Alarm {
      * 
      */
     public void snoozeAlarm(){
+        this.isSounding = false;
         Date tempTime = new Date();
         tempTime.setTime(alarmTime.getTime());
         snoozeTime.setMinutes(snoozeTime.getMinutes() + SNOOZE_TIME);
@@ -100,7 +117,7 @@ public class Alarm {
      * the alarm has not been disabled.
      */
     public void activate(){
-        
+        this.isSounding = true;
         if(!disableAlarm){
 
             if (repeat){
@@ -113,10 +130,17 @@ public class Alarm {
 
     }
     
+    public void enableAlarm(){
+        this.isEnabled = true;
+        generateAlarmTime(alarmTime.getHours(), alarmTime.getMinutes(), false, true);
+        createOffset();
+    }
+    
     private void generateAlarmTime(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
         if (isMilitaryTime){
             alarmTime.setHours(hours);
             alarmTime.setMinutes(minutes);
+            
             if(alarmTime.before(new Date())){
                 alarmTime.setDate(alarmTime.getDate() + 1);
             }
@@ -138,6 +162,7 @@ public class Alarm {
                 }
             }
         }
+        alarmTime.setSeconds(0);
     }
     
     public void updateAlarm(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
@@ -150,10 +175,11 @@ public class Alarm {
      * an alarm is created to sound at a set number of hours and minutes
      * within the next 24 hours.
      */
-    public void createAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
+    public void setAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
         this.repeat = repeat;
         alarmTime = new Date();
         this.disableAlarm = false;
+        this.isEnabled = true;
         generateAlarmTime(hours, minutes, AMTruePMFalse, isMilitaryTime);
 
         snoozeTime = alarmTime;
