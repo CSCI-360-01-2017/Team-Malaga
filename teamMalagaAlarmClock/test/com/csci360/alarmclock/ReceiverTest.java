@@ -25,20 +25,6 @@ public class ReceiverTest {
     public static void tearDownClass() {
     }
 
-    /**
-     * Test of getCurrentFormattedString method, of class Receiver.
-     */
-    @Test
-    public void testGetCurrentFormattedString() {
-        //test that the formatted string matches the numerical value, as formatted
-        System.out.println("getCurrentFormattedString");
-        Receiver instance = null;
-        String expResult = "";
-        String result = instance.getCurrentFormattedString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of next method, of class Receiver.
@@ -47,10 +33,12 @@ public class ReceiverTest {
     public void testNext() {
         //similiar to isClearStation in broadcastEmulator test
         System.out.println("next");
-        Receiver instance = null;
+        Receiver instance = new Receiver("AM", 535, 1705, 10, false);
+        instance.prev();
+        int before = instance.getCurrent();
         instance.next();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getCurrent();
+        assertTrue(before < after);
     }
 
     /**
@@ -60,10 +48,12 @@ public class ReceiverTest {
     public void testPrev() {
         //similiar to isClearStation in broadcastEmulator test
         System.out.println("prev");
-        Receiver instance = null;
+        Receiver instance = new Receiver("AM", 535, 1705, 10, false);
+        instance.next();
+        int before = instance.getCurrent();
         instance.prev();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getCurrent();
+        assertTrue(before > after);
     }
     
 }

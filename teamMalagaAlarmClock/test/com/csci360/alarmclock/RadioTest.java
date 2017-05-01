@@ -36,9 +36,10 @@ public class RadioTest {
         //test that the Receiver IS the same after switching twice.
         System.out.println("switchReceiver");
         Radio instance = new Radio();
+        Receiver before = instance.getReceiver();
         instance.switchReceiver();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Receiver after = instance.getReceiver();
+        assertNotEquals(before, after);
     }
 
     /**
@@ -50,9 +51,10 @@ public class RadioTest {
         //or that it has looped back to the first viable station (may be tricky!)
         System.out.println("nextStation");
         Radio instance = new Radio();
+        int before = instance.getStation();
         instance.nextStation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getStation();
+        assertTrue(after >= before);
     }
 
     /**
@@ -65,9 +67,10 @@ public class RadioTest {
         //could also test that a subsequent call to nextStation will go back to the starting point.
         System.out.println("prevStation");
         Radio instance = new Radio();
+        int before = instance.getStation();
         instance.prevStation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getStation();
+        assertTrue(after <= before);
     }
 
     /**
@@ -78,9 +81,10 @@ public class RadioTest {
         //TODO test that the volume has increased or is at max(11)
         System.out.println("incrementVolume");
         Radio instance = new Radio();
+        int before = instance.getVolume();
         instance.incrementVolume();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getVolume();
+        assertTrue(after >= before);
     }
 
     /**
@@ -91,48 +95,11 @@ public class RadioTest {
         //TODO test that the volume has decreased or is at min(11)
         System.out.println("decrementVolume");
         Radio instance = new Radio();
+        int before = instance.getVolume();
         instance.decrementVolume();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int after = instance.getVolume();
+        assertTrue(after <= before);
     }
 
-    /**
-     * Test of playBroadcast method, of class Radio.
-     */
-    @Test
-    public void testPlayBroadcast() {
-        //print statement, test may not be needed?
-        System.out.println("playBroadcast");
-        Radio instance = new Radio();
-        instance.playBroadcast();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of start method, of class Radio.
-     */
-    @Test
-    public void testStart() {
-        //test that radio is now set to on, i.e. on = true
-        System.out.println("start");
-        Radio instance = new Radio();
-        instance.start();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of stop method, of class Radio.
-     */
-    @Test
-    public void testStop() {
-        //test that radio is now set to off, i.e. on = false
-        System.out.println("stop");
-        Radio instance = new Radio();
-        instance.stop();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

@@ -43,7 +43,7 @@ public class Controller implements ControllerInterface{
         this.isMilitaryTime = false;
         
     }
-    
+
     /*
     
     The Controller class manages the incoming and outgoing function calls by the back-end of the AlarmClock system
@@ -52,7 +52,7 @@ public class Controller implements ControllerInterface{
     
     */
     
-    
+
     //This method is responsible for setting the hour in Alarm1
     public void setHourA1(int h){
         this.hoursA1 = h;
@@ -202,7 +202,7 @@ public class Controller implements ControllerInterface{
     public boolean getRepeatA2(){
         return this.alarm2.isRepeat();
     }
-    
+
     //This method makes Alarm1 disabled, in which case it will not sound the alarm when the alarm time is reached
     public void disableA1(){
         this.alarm1.disableAlarm();
@@ -299,7 +299,6 @@ public class Controller implements ControllerInterface{
     }
     
     
-    
     public boolean isSoundingA1(){
         return this.alarm1.isSounding();
     }
@@ -307,9 +306,7 @@ public class Controller implements ControllerInterface{
     public boolean isSoundingA2(){
         return this.alarm2.isSounding();
     }
-    
-    
-    
+
     //This method disables the respective sounding alarm (1 or 2) for 24 hours
     public void silenceAlarm(){
         if(this.alarm1.isSounding()){
