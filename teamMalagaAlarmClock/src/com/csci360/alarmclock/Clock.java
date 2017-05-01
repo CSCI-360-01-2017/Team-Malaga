@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Assignment for CSCI 360, created by Team Malaga.
+ *  This is a simple clock class that sends a signal to update the controller
+ *  at a given clock update time which then gets sent further to the GUI.
  */
 package com.csci360.alarmclock;
 
@@ -12,7 +12,7 @@ import javafx.application.Platform;
 
 /**
  *
- * @author Eric
+ * @author Team-Malaga
  */
 
 public class Clock {

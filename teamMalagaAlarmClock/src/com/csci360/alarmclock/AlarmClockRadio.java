@@ -1,5 +1,6 @@
 /*
  *  Assignment for CSCI 360, created by Team Malaga.
+ *  This class sets up the GUI
  */
 package com.csci360.alarmclock;
 
