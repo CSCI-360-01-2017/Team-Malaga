@@ -60,7 +60,7 @@ public class AlarmTest {
     @Test
     public void testActivate() {
         System.out.println("activate");
-        testingAlarm.activate();
+        testingController.soundAlarm(testingAlarm);
         assertSame(testingAlarm, testingController.getSoundingAlarm());
     }
 
