@@ -3,7 +3,7 @@
  */
 package com.csci360.alarmclock;
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
 
 /**
@@ -12,16 +12,12 @@ import java.util.Calendar;
  */
 public class Controller implements ControllerInterface{
     
-    private Alarm soundingAlarm;
-    private boolean isSoundingA1;
-    private boolean isSoundingA2;
     private Alarm alarm1;
     private Alarm alarm2;
     private int hoursA1;
     private int minutesA1;
     private int hoursA2;
     private int minutesA2;
-    private boolean repeat;
     private boolean AMTruePMFalse;
     private boolean isMilitaryTime;
     private final Radio radio;
@@ -45,10 +41,9 @@ public class Controller implements ControllerInterface{
         this.isA1AM = false;
         this.isA2AM = false;
         this.isMilitaryTime = false;
-        this.isSoundingA1 = false;
-        this.isSoundingA2 = false;
-        this.soundingAlarm = null;
+        
     }
+
     /*
     
     The Controller class manages the incoming and outgoing function calls by the back-end of the AlarmClock system
@@ -57,12 +52,7 @@ public class Controller implements ControllerInterface{
     
     */
     
-    // This method is responsible for returning which alarm is sounding
-    // this.soundingAlarm is managed later with the soundAlarm(x) method.
-    public Alarm getSoundingAlarm(){
-        return this.soundingAlarm;
-    }
-    
+
     //This method is responsible for setting the hour in Alarm1
     public void setHourA1(int h){
         this.hoursA1 = h;
@@ -205,6 +195,14 @@ public class Controller implements ControllerInterface{
         this.alarm2.setRepeat(repeat);
     }
     
+    public boolean getRepeatA1(){
+        return this.alarm1.isRepeat();
+    }
+    
+    public boolean getRepeatA2(){
+        return this.alarm2.isRepeat();
+    }
+
     //This method makes Alarm1 disabled, in which case it will not sound the alarm when the alarm time is reached
     public void disableA1(){
         this.alarm1.disableAlarm();
@@ -281,43 +279,50 @@ public class Controller implements ControllerInterface{
     
     //This method makes a new alarm object for alarm 1 with all of these stored global values for its creation
     public void setAlarm1(){
-        this.alarm1.setAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm1.setAlarm(hoursA1, minutesA1, AMTruePMFalse, isMilitaryTime);
     }
     
     //This method makes a new alarm object for alarm 2 with all of these stored global values for its creation
     public void setAlarm2(){
-        this.alarm2.setAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm2.setAlarm(hoursA2, minutesA2, AMTruePMFalse, isMilitaryTime);
     }
     
     //This method determines which alarm is being passed in and sends the global sounding variable of the respective alarm to on
+    @Override
     public void soundAlarm(Alarm a){
-        this.soundingAlarm = a;
         if(a == this.alarm1){
             this.ui.soundAlarm(1);
-            this.isSoundingA1 = true;
         }
         else{
             this.ui.soundAlarm(2);
-            this.isSoundingA2 = true;
         }
     }
     
+    
+    public boolean isSoundingA1(){
+        return this.alarm1.isSounding();
+    }
+    
+    public boolean isSoundingA2(){
+        return this.alarm2.isSounding();
+    }
+
     //This method disables the respective sounding alarm (1 or 2) for 24 hours
     public void silenceAlarm(){
-        if(this.isSoundingA1){
-            this.alarm1.disableAlarm();
+        if(this.alarm1.isSounding()){
+            this.alarm1.silenceAlarm();
         }
-        if(this.isSoundingA2){
-            this.alarm2.disableAlarm();
+        if(this.alarm2.isSounding()){
+            this.alarm2.silenceAlarm();
         }
     }
     
     //This method disables the respective sounding alarm (1 or 2) by appending 10 minutes to the sounding of the next alarm
     public void snoozeAlarm(){
-        if(this.isSoundingA1){
+        if(this.alarm1.isSounding()){
             this.alarm1.snoozeAlarm();
         }
-        if(this.isSoundingA2){
+        if(this.alarm2.isSounding()){
             this.alarm2.snoozeAlarm();
         }
     }
@@ -380,6 +385,7 @@ public class Controller implements ControllerInterface{
     }
 
     //This method is responsible for the ui updating of the textfields with reference to AMPM or military time specification
+    @Override
     public void updateTime(Calendar cal) {
         if(isMilitaryTime){
             this.ui.updateMilitaryTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));

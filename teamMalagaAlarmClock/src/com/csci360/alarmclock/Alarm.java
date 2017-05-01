@@ -24,19 +24,18 @@ public class Alarm {
     private Date alarmTime;
     private boolean isEnabled;
     private boolean isSounding;
-    private boolean disableAlarm;
     private Date snoozeTime;
     private Timer timer;
     
     /**
      *
      *  Constructor for Alarm, it needs an instance of a controller to which
-     *  it can send the sound alarm signal.
+     *  it can send the sound alarm signal. Default time for the alarms is set to noon.
+     * @param c ControllerInterface to send the sound alarm notification back to
      */
     public Alarm(ControllerInterface c) {
         this.sysController = c;
         this.repeat = false;
-        this.disableAlarm = false;
         this.isEnabled = false;
         this.isSounding = false;
         alarmTime = new Date();
@@ -53,7 +52,7 @@ public class Alarm {
      * 
      */
     public void disableAlarm(){
-        this.disableAlarm = true;
+        this.isSounding = false;
         this.isEnabled = false;
         this.timer.cancel();
     }
@@ -62,7 +61,12 @@ public class Alarm {
     public void silenceAlarm(){
         this.isSounding = false;
         if(!this.repeat){
+            this.isEnabled = false;
             this.timer.cancel();
+        }
+        else{
+            this.timer.cancel();
+            enableAlarm();
         }
     }
     
@@ -79,11 +83,13 @@ public class Alarm {
         alarmTime = snoozeTime;
         createOffset();
         alarmTime = tempTime;
-        timer = new Timer();
-                
-            
+    //    timer = new Timer();    
     }
-
+    
+    public boolean isSounding(){
+        return this.isSounding;
+    }
+    
     public boolean isRepeat() {
         return repeat;
     }
@@ -99,18 +105,6 @@ public class Alarm {
     public void setAlarmTime(Date alarmTime) {
         this.alarmTime = alarmTime;
     }
-
-    public boolean isDisableAlarm() {
-        return disableAlarm;
-    } 
-
-    public Date getSnoozeTime() {
-        return snoozeTime;
-    }
-
-    public void setSnoozeTime(Date snoozeTime) {
-        this.snoozeTime = snoozeTime;
-    }
     
     /**
      * activate is called when the designated alarm time has been reached and 
@@ -118,16 +112,7 @@ public class Alarm {
      */
     public void activate(){
         this.isSounding = true;
-        if(!disableAlarm){
-
-            if (repeat){
-                alarmTime.setDate(alarmTime.getDate()+REPEAT_TIME);
-                createOffset();
-            }
-            
-             sysController.soundAlarm(this);
-        }
-
+        sysController.soundAlarm(this);
     }
     
     public void enableAlarm(){
@@ -168,24 +153,18 @@ public class Alarm {
         alarmTime.setSeconds(0);
     }
     
-    public void updateAlarm(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
-        generateAlarmTime(hours, minutes, AMTruePMFalse, isMilitaryTime);
-        this.timer.cancel();
-        createOffset();
-    }
     
     /**
      * an alarm is created to sound at a set number of hours and minutes
      * within the next 24 hours.
      */
-    public void setAlarm(int hours, int minutes, boolean repeat, boolean AMTruePMFalse, boolean isMilitaryTime){
-        this.repeat = repeat;
+    public void setAlarm(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
+        
         if(this.isEnabled){
             this.timer.cancel();
         }
 
         alarmTime = new Date();
-        this.disableAlarm = false;
         this.isEnabled = true;
         generateAlarmTime(hours, minutes, AMTruePMFalse, isMilitaryTime);
 
@@ -199,8 +178,6 @@ public class Alarm {
      * the time until the alarm sounds is dictated through a Timer.
      */
     private void createOffset(){
-        System.out.println(alarmTime.getHours());
-        System.out.println(alarmTime.getMinutes());
         this.timer = new Timer();
         timer.schedule(new TimerTask() {
 
@@ -208,7 +185,6 @@ public class Alarm {
             public void run() {
                 Platform.runLater(() -> {
                     activate();
-                    System.out.println("alarm activated");
                 });
             }
         }, alarmTime);

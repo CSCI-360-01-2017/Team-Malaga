@@ -23,37 +23,10 @@ public class FXMLController implements UITimingInterface {
     private Label currenttimetext;
 
     @FXML
-    private RadioButton AMradio;
-
-    @FXML
-    private RadioButton ampm;
-
-    @FXML
-    private Button snoozebutton;
-
-    @FXML
-    private Button alarmVolUp;
-
-    @FXML
-    private Button alarmVolDown;
-
-    @FXML
-    private Button freqDown;
-
-    @FXML
     private RadioButton a1enable;
 
     @FXML
-    private Button volDown;
-
-    @FXML
     private Label radiotext;
-
-    @FXML
-    private ToggleGroup hour;
-
-    @FXML
-    private ToggleGroup radioonoff;
 
     @FXML
     private Label alarm1text;
@@ -62,16 +35,7 @@ public class FXMLController implements UITimingInterface {
     private RadioButton a2repeat;
 
     @FXML
-    private RadioButton FMradio;
-
-    @FXML
-    private ToggleGroup amfm;
-
-    @FXML
     private RadioButton a1repeat;
-
-    @FXML
-    private ToggleButton radioon;
 
     @FXML
     private RadioButton a2enable;
@@ -80,78 +44,39 @@ public class FXMLController implements UITimingInterface {
     private Label alarm2text;
 
     @FXML
-    private Button setAlarm1;
-
-    @FXML
-    private RadioButton twentyfour;
-
-    @FXML
-    private Button setAlarm2;
-
-    @FXML
-    private Button silencebutton;
-
-    @FXML
-    private ToggleButton radiooff;
-
-    @FXML
-    private Button freqUp;
-
-    @FXML
-    private Button volUp;
-    
-    @FXML
-    private Button incHourA1;
-    @FXML
-    private Button decHourA1;
-    @FXML
-    private Button incHourA2;
-    @FXML
-    private Button decHourA2;
-    @FXML
-    private Button incMinA1;
-    @FXML
-    private Button decMinA1;
-    @FXML
-    private Button incMinA2;
-    @FXML
-    private Button decMinA2;
-    @FXML
-    private Button incMinA1Fast;
-    @FXML
-    private Button decMinA1Fast;
-    @FXML
-    private Button incMinA2Fast;
-    @FXML
-    private Button decMinA2Fast;
-    
-    @FXML
     private Label hourA1;
+    
     @FXML
     private Label minA1;
+    
     @FXML
     private Label hourA2;
+    
     @FXML
     private Label minA2;
     
     @FXML
     private RadioButton am1;
+    
     @FXML
     private RadioButton pm1;
+    
     @FXML
     private RadioButton am2;
+    
     @FXML
     private RadioButton pm2;
+    
     @FXML
     private Rectangle rectA1;
+    
     @FXML
     private Rectangle rectA2;
     
     private Controller controller;
 
     
-    boolean alarm1isAM;
-    boolean alarm2isAM;
+
     
     public FXMLController(){
        controller = new Controller(this);
@@ -159,8 +84,6 @@ public class FXMLController implements UITimingInterface {
        this.controller.setMinuteA1(0);
        this.controller.setHourA2(12);
        this.controller.setMinuteA2(0);
-       this.alarm1isAM = false;
-       this.alarm2isAM = false;
     }
     
     
@@ -420,7 +343,18 @@ public class FXMLController implements UITimingInterface {
     public void silenceButton(ActionEvent event){
         this.rectA1.setFill(Color.WHITE);
         this.rectA2.setFill(Color.WHITE);
+        
+        if(this.controller.isSoundingA1() && !this.controller.getRepeatA1()){
+            this.a1enable.setSelected(false);
+        }
+        if(this.controller.isSoundingA2() && !this.controller.getRepeatA2()){
+            this.a2enable.setSelected(false);
+        }
+        
+        
         this.controller.silenceAlarm();
+
+
     }
     
     @FXML
@@ -430,11 +364,13 @@ public class FXMLController implements UITimingInterface {
         this.controller.snoozeAlarm();
     }
 
+    @Override
     public void updateMilitaryTime(int hours, int minutes) {
         this.currenttimetext.setText("   "+String.format("%02d", hours) + ":"+String.format("%02d", minutes));
     }
 
 
+    @Override
     public void updateAMPMTime(int hours, int minutes, boolean isAM) {
         if(isAM){
             this.currenttimetext.setText(String.format("%02d", hours) + ":"+String.format("%02d", minutes) + " AM");
@@ -450,6 +386,7 @@ public class FXMLController implements UITimingInterface {
             this.rectA1.setFill(Color.GREEN);
         }else{
             this.rectA2.setFill(Color.GREEN);
+
         }
     }
 }
