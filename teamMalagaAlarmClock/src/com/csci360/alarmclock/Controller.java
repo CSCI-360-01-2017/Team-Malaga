@@ -205,16 +205,6 @@ public class Controller implements ControllerInterface{
         this.alarm2.setRepeat(repeat);
     }
     
-    //This method makes it so that Alarm1 will silence itself, turning isSounding to false
-    public void silenceA1(){
-        this.alarm1.silenceAlarm();
-    }
-    
-    //This method makes it so that Alarm2 will silence itself, turning isSounding to false
-    public void silenceA2(){
-        this.alarm2.silenceAlarm();
-    }
-    
     //This method makes Alarm1 disabled, in which case it will not sound the alarm when the alarm time is reached
     public void disableA1(){
         this.alarm1.disableAlarm();
@@ -250,7 +240,11 @@ public class Controller implements ControllerInterface{
         return this.isA2AM;
     }
     
-    
+    /*
+    This method checks whether military time is enabled
+    if it is, then both the hours for alarm1 and alarm2 will be incremented by twelve
+    if it is not, then both the hours for alarm1 and alarm2 will be decremented by twelve
+    */
     public void setMilitaryTime(boolean mt){
         if(mt){ //set it to military time, need to add 12 if currently in PM
             if(!this.isA1AM && this.hoursA1 != 12){  //if pm add 12
@@ -280,18 +274,22 @@ public class Controller implements ControllerInterface{
         this.isMilitaryTime = mt;
     }
     
+    //This method is used to return whether or not the time is set in military time or not
     public boolean isMilitaryTime(){
         return this.isMilitaryTime;
     }
     
+    //This method makes a new alarm object for alarm 1 with all of these stored global values for its creation
     public void setAlarm1(){
         this.alarm1.setAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
     }
     
+    //This method makes a new alarm object for alarm 2 with all of these stored global values for its creation
     public void setAlarm2(){
         this.alarm2.setAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
     }
     
+    //This method determines which alarm is being passed in and sends the global sounding variable of the respective alarm to on
     public void soundAlarm(Alarm a){
         this.soundingAlarm = a;
         if(a == this.alarm1){
@@ -304,7 +302,7 @@ public class Controller implements ControllerInterface{
         }
     }
     
-
+    //This method disables the respective sounding alarm (1 or 2) for 24 hours
     public void silenceAlarm(){
         if(this.isSoundingA1){
             this.alarm1.disableAlarm();
@@ -314,6 +312,7 @@ public class Controller implements ControllerInterface{
         }
     }
     
+    //This method disables the respective sounding alarm (1 or 2) by appending 10 minutes to the sounding of the next alarm
     public void snoozeAlarm(){
         if(this.isSoundingA1){
             this.alarm1.snoozeAlarm();
@@ -356,18 +355,21 @@ public class Controller implements ControllerInterface{
         this.currentMod = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentMod)+1)%2];
     }
     
+    //This method traverses to the next available station in the radio object
     public void incrementStation(){
         if (this.radio.getOn()){
             this.radio.nextStation();
         }
     }
     
+    //This method traverses to the previous available station in the radio object
     public void decrementStation(){
         if (this.radio.getOn()){
             this.radio.prevStation();
         }
     }
  
+    //This method returns the string of the current station broadcast index in the radio object
     public String playBroadcast(){
         if (this.radio.getOn()){
             return this.radio.playBroadcast();
@@ -377,6 +379,7 @@ public class Controller implements ControllerInterface{
         }
     }
 
+    //This method is responsible for the ui updating of the textfields with reference to AMPM or military time specification
     public void updateTime(Calendar cal) {
         if(isMilitaryTime){
             this.ui.updateMilitaryTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
