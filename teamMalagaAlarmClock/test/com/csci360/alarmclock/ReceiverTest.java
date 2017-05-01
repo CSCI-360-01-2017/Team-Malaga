@@ -35,6 +35,7 @@ public class ReceiverTest {
         System.out.println("next");
         Receiver instance = new Receiver("AM", 535, 1705, 10, false);
         instance.prev();
+        instance.prev();
         int before = instance.getCurrent();
         instance.next();
         int after = instance.getCurrent();
@@ -49,6 +50,7 @@ public class ReceiverTest {
         //similiar to isClearStation in broadcastEmulator test
         System.out.println("prev");
         Receiver instance = new Receiver("AM", 535, 1705, 10, false);
+        instance.next();
         instance.next();
         int before = instance.getCurrent();
         instance.prev();
