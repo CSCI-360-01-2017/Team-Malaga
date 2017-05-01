@@ -1,5 +1,8 @@
 /*
  *  Assignment for CSCI 360, created by Team Malaga.
+ *
+ *  This class is an alarm that is able to be set to a specified time and can
+ *  be enabled, disabled, silenced, snoozed, and set to repeat.
  */
 
 

@@ -1,5 +1,8 @@
 /*
  * Assignment for CSCI 360, created by Team Malaga.
+ * This class is the main controller for the project which holds two instances
+ * of the alarm class along with a radio and the attributes needed to update these
+ * classes from the GUI.
  */
 package com.csci360.alarmclock;
 
