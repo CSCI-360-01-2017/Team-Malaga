@@ -42,6 +42,7 @@ public class Alarm {
         alarmTime.setHours(12);
         alarmTime.setMinutes(0);
         alarmTime.setSeconds(0);
+        this.timer = new Timer();
         
     }
     

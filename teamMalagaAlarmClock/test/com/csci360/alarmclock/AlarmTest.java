@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Assignment for CSCI 360, created by Team Malaga.
  */
 package com.csci360.alarmclock;
 
@@ -14,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Eric
+ * @author Team-Malaga
  */
 public class AlarmTest {
     
@@ -23,6 +21,7 @@ public class AlarmTest {
     UITimingInterface ui;
     
     public AlarmTest() {
+        this.ui = new TestUI();
         this.testingController = new Controller(ui);
         this.testingAlarm = new Alarm(testingController);
     }
