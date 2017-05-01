@@ -5,6 +5,7 @@ package com.csci360.alarmclock;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,7 +29,19 @@ public class AlarmClockRadio extends Application {
         stage.show();
     }
     
-        /**
+    
+    /**
+     * Force all platforms and threads of JavaFX to close
+     */
+    @Override
+    public void stop()
+    {
+        Platform.exit();
+        System.exit(0);
+    }
+    
+    
+    /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {

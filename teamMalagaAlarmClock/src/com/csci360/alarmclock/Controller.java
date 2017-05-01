@@ -3,7 +3,7 @@
  */
 package com.csci360.alarmclock;
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
 
 /**
@@ -12,17 +12,12 @@ import java.util.Calendar;
  */
 public class Controller implements ControllerInterface{
     
-    private Alarm soundingAlarm;
-    private boolean isSoundingA1;
-    private boolean isSoundingA2;
     private Alarm alarm1;
     private Alarm alarm2;
-    private Alarm selectedAlarm;
     private int hoursA1;
     private int minutesA1;
     private int hoursA2;
     private int minutesA2;
-    private boolean repeat;
     private boolean AMTruePMFalse;
     private boolean isMilitaryTime;
     private final Radio radio;
@@ -46,52 +41,59 @@ public class Controller implements ControllerInterface{
         this.isA1AM = false;
         this.isA2AM = false;
         this.isMilitaryTime = false;
-        this.isSoundingA1 = false;
-        this.isSoundingA2 = false;
-        this.soundingAlarm = null;
+        
     }
     
-    public Alarm getSoundingAlarm(){
-        return this.soundingAlarm;
-    }
+    /*
     
-    public void selectAlarm1(){
-        this.selectedAlarm = this.alarm1;
-    }
+    The Controller class manages the incoming and outgoing function calls by the back-end of the AlarmClock system
+    to update internal changes, these changes can be noted by and linked up to GUI's with the proper layout and design
+    structure as the one implemented here in this project.
     
-    public void selectAlarm2(){
-        this.selectedAlarm = this.alarm2;
-    }
+    */
     
+    
+    //This method is responsible for setting the hour in Alarm1
     public void setHourA1(int h){
         this.hoursA1 = h;
     }
     
+    //This method is responsible for setting the minute in Alarm1
     public void setMinuteA1(int m){
         this.minutesA1 = m;
     }
+    
+    //This method is responsible for setting the hour in Alarm2
     public void setHourA2(int h){
         this.hoursA2 = h;
     }
     
+    //This method is responsible for setting the minute in Alarm2
     public void setMinuteA2(int m){
         this.minutesA2 = m;
     }
+    
+    //This method returns the hour of Alarm1
     public int getHourA1(){
         return this.hoursA1;
     }
     
+    //This method returns the minute of Alarm1
     public int getMinuteA1(){
         return this.minutesA1;
     }
+    
+    //This method returns the hour of Alarm2
     public int getHourA2(){
         return this.hoursA2;
     }
     
+    //This method returns the minute of Alarm2
     public int getMinuteA2(){
         return this.minutesA2;
     }
     
+    //This method distinguishes whether the mode is set in military time or not and decrements the hour for Alarm1 by 1
     public void decrementHourA1(){
         if(this.isMilitaryTime){
             if(this.hoursA1>0){
@@ -105,6 +107,7 @@ public class Controller implements ControllerInterface{
         }
     }
     
+    //This method distinguishes whether the mode is set in military time or not and increments the hour for Alarm1 by 1
     public void incrementHourA1(){
         if(this.isMilitaryTime){
             if(this.hoursA1<23){
@@ -118,17 +121,21 @@ public class Controller implements ControllerInterface{
         }
     }
 
+    //This method determines that if the minutes in Alarm1 exceed 0, they should then be decremeneted by 1
     public void decrementMinA1(){
         if(this.minutesA1>0){
             this.minutesA1--;
         }
     }
     
+    //This method determines that if the minutes in Alarm1 do not exceed 58, they should then be incremeneted by 1
     public void incrementMinA1(){
         if(this.minutesA1<59){
             this.minutesA1++;
         }
     }
+    
+    //This method distinguishes whether the mode is set in military time or not and decrements the hour for Alarm2 by 1
     public void decrementHourA2(){
         if(this.isMilitaryTime){
             if(this.hoursA2>0){
@@ -141,6 +148,7 @@ public class Controller implements ControllerInterface{
         }
     }
     
+    //This method distinguishes whether the mode is set in military time or not and increments the hour for Alarm2 by 1
     public void incrementHourA2(){
         if(this.isMilitaryTime){
             if(this.hoursA2<23){
@@ -153,74 +161,88 @@ public class Controller implements ControllerInterface{
         }
     }
 
+    //This method determines that if the minutes in Alarm2 exceed 0, they should then be decremeneted by 1
     public void decrementMinA2(){
         if(this.minutesA2>0){
             this.minutesA2--;
         }
     }
     
+    //This method determines that if the minutes in Alarm2 do not exceed 58, they should then be incremeneted by 1
     public void incrementMinA2(){
         if(this.minutesA2<59){
             this.minutesA2++;
         }
     }
     
+    //This method makes the Alarm object for alarm1 enabled
     public void enableA1(){
         this.alarm1.enableAlarm();
     }
     
+    //This method makes the Alarm object for alarm2 enabled
     public void enableA2(){
         this.alarm2.enableAlarm();
     }
     
+    //This method makes it so that Alarm1 will repeat in 24 hours
     public void setRepeatA1(boolean repeat){
         this.alarm1.setRepeat(repeat);
     }
     
+    //This method makes it so that Alarm2 will repeat in 24 hours
     public void setRepeatA2(boolean repeat){
         this.alarm2.setRepeat(repeat);
     }
     
-    public void silenceA1(){
-        this.alarm1.silenceAlarm();
+    public boolean getRepeatA1(){
+        return this.alarm1.isRepeat();
     }
     
-    public void silenceA2(){
-        this.alarm2.silenceAlarm();
+    public boolean getRepeatA2(){
+        return this.alarm2.isRepeat();
     }
     
+    //This method makes Alarm1 disabled, in which case it will not sound the alarm when the alarm time is reached
     public void disableA1(){
         this.alarm1.disableAlarm();
     }
     
+    //This method makes Alarm2 disabled, in which case it will not sound the alarm when the alarm time is reached
     public void disableA2(){
         this.alarm2.disableAlarm();
     }
-    
-    
-    
-    
-    public void setRepeat(boolean r){
-        this.repeat = r;
-    }
-    
+        
+    //This method sets whether or not AMPM is on or off for the Clock
     public void setAMPM(boolean ap){
         this.AMTruePMFalse = ap;
     }
     
+    //This method sets whether or not AMPM is on or off for the Alarm1
     public void setA1AM(boolean A1AM){
         this.isA1AM = A1AM;
     }
+    
+    //This method sets whether or not AMPM is on or off for the Alarm2
     public void setA2AM(boolean A2AM){
         this.isA2AM = A2AM;
     }
+    
+    //This method returns whether or not the AMPM functionality for Alarm 1 is engaged
     public boolean isA1AM(){
         return this.isA1AM;
     }
+    
+    //This method returns whether or not the AMPM functionality for Alarm 2 is engaged
     public boolean isA2AM(){
         return this.isA2AM;
     }
     
+    /*
+    This method checks whether military time is enabled
+    if it is, then both the hours for alarm1 and alarm2 will be incremented by twelve
+    if it is not, then both the hours for alarm1 and alarm2 will be decremented by twelve
+    */
     public void setMilitaryTime(boolean mt){
         if(mt){ //set it to military time, need to add 12 if currently in PM
             if(!this.isA1AM && this.hoursA1 != 12){  //if pm add 12
@@ -250,45 +272,60 @@ public class Controller implements ControllerInterface{
         this.isMilitaryTime = mt;
     }
     
+    //This method is used to return whether or not the time is set in military time or not
     public boolean isMilitaryTime(){
         return this.isMilitaryTime;
     }
     
+    //This method makes a new alarm object for alarm 1 with all of these stored global values for its creation
     public void setAlarm1(){
-        this.alarm1.setAlarm(hoursA1, minutesA1, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm1.setAlarm(hoursA1, minutesA1, AMTruePMFalse, isMilitaryTime);
     }
     
+    //This method makes a new alarm object for alarm 2 with all of these stored global values for its creation
     public void setAlarm2(){
-        this.alarm2.setAlarm(hoursA2, minutesA2, repeat, AMTruePMFalse, isMilitaryTime);
+        this.alarm2.setAlarm(hoursA2, minutesA2, AMTruePMFalse, isMilitaryTime);
     }
     
+    //This method determines which alarm is being passed in and sends the global sounding variable of the respective alarm to on
+    @Override
     public void soundAlarm(Alarm a){
-        this.soundingAlarm = a;
         if(a == this.alarm1){
             this.ui.soundAlarm(1);
-            this.isSoundingA1 = true;
         }
         else{
             this.ui.soundAlarm(2);
-            this.isSoundingA2 = true;
         }
     }
     
-
+    
+    
+    public boolean isSoundingA1(){
+        return this.alarm1.isSounding();
+    }
+    
+    public boolean isSoundingA2(){
+        return this.alarm2.isSounding();
+    }
+    
+    
+    
+    //This method disables the respective sounding alarm (1 or 2) for 24 hours
     public void silenceAlarm(){
-        if(this.isSoundingA1){
-            this.alarm1.disableAlarm();
+        if(this.alarm1.isSounding()){
+            this.alarm1.silenceAlarm();
         }
-        if(this.isSoundingA2){
-            this.alarm2.disableAlarm();
+        if(this.alarm2.isSounding()){
+            this.alarm2.silenceAlarm();
         }
     }
     
+    //This method disables the respective sounding alarm (1 or 2) by appending 10 minutes to the sounding of the next alarm
     public void snoozeAlarm(){
-        if(this.isSoundingA1){
+        if(this.alarm1.isSounding()){
             this.alarm1.snoozeAlarm();
         }
-        if(this.isSoundingA2){
+        if(this.alarm2.isSounding()){
             this.alarm2.snoozeAlarm();
         }
     }
@@ -326,18 +363,21 @@ public class Controller implements ControllerInterface{
         this.currentMod = am_fm[(java.util.Arrays.asList(am_fm).indexOf(currentMod)+1)%2];
     }
     
+    //This method traverses to the next available station in the radio object
     public void incrementStation(){
         if (this.radio.getOn()){
             this.radio.nextStation();
         }
     }
     
+    //This method traverses to the previous available station in the radio object
     public void decrementStation(){
         if (this.radio.getOn()){
             this.radio.prevStation();
         }
     }
  
+    //This method returns the string of the current station broadcast index in the radio object
     public String playBroadcast(){
         if (this.radio.getOn()){
             return this.radio.playBroadcast();
@@ -347,6 +387,8 @@ public class Controller implements ControllerInterface{
         }
     }
 
+    //This method is responsible for the ui updating of the textfields with reference to AMPM or military time specification
+    @Override
     public void updateTime(Calendar cal) {
         if(isMilitaryTime){
             this.ui.updateMilitaryTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
