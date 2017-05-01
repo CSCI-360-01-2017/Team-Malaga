@@ -48,8 +48,7 @@ public class Alarm {
     
     
     /**
-     * The alarm has been disabled and will not activate
-     * 
+     * The alarm has been disabled and will not activate until it is enabled.
      */
     public void disableAlarm(){
         this.isSounding = false;
@@ -57,7 +56,11 @@ public class Alarm {
         this.timer.cancel();
     }
     
-    
+    /**
+     * The alarm has been silenced, it is no longer sounding but it will go off
+     * in 1 day if it is set to repeat. If it is not set to repeat then the alarm
+     * will be disabled.
+     */
     public void silenceAlarm(){
         this.isSounding = false;
         if(!this.repeat){
@@ -72,7 +75,10 @@ public class Alarm {
     
     
     /**
-     * The alarm has been snoozed and will sound again in 10 minutes. 
+     * The alarm has been snoozed and will sound again in 10 minutes. 10 minutes will be added to snooze time
+     * every time the alarm is snoozed. The alarmTime is used to set the timer, so
+     * the alarm time is temporarily set to the snooze time and then changed back
+     * to the original time.
      * 
      */
     public void snoozeAlarm(){
@@ -83,27 +89,31 @@ public class Alarm {
         alarmTime = snoozeTime;
         createOffset();
         alarmTime = tempTime;
-    //    timer = new Timer();    
     }
     
+    /**
+     * Returns if the alarm is currently sounding
+     * @return isSounding Boolean
+     */
     public boolean isSounding(){
         return this.isSounding;
     }
     
+    /**
+     * Returns if the alarm is set to repeat.
+     * @return repeat boolean
+     */
     public boolean isRepeat() {
         return repeat;
     }
-
+    
+    /**
+     * Sets the alarm to repeat or not. If set to repeat, it will sound in 1 day
+     * after it gets silenced.
+     * @param repeat boolean
+     */
     public void setRepeat(boolean repeat) {
         this.repeat = repeat;
-    }
-
-    public Date getAlarmTime() {
-        return alarmTime;
-    }
-
-    public void setAlarmTime(Date alarmTime) {
-        this.alarmTime = alarmTime;
     }
     
     /**
@@ -115,15 +125,32 @@ public class Alarm {
         sysController.soundAlarm(this);
     }
     
+    
+    /**
+     * The alarm is set to enable. If it was previously enabled, that time gets 
+     * canceled and the current time is set to go off. If it was not enabled then
+     * it is now set to go off at the specified time.
+     */
     public void enableAlarm(){
         if(this.isEnabled){
             this.timer.cancel();
         }
         this.isEnabled = true;
         generateAlarmTime(alarmTime.getHours(), alarmTime.getMinutes(), false, true);
+        snoozeTime = alarmTime;
         createOffset();
     }
     
+    
+    /**
+     * Sets the alarm time to a specified hours, minutes, am or pm, and 12 or 24 
+     * hour time format. This is the time that the alarm will go off at if it gets
+     * enabled.
+     * @param hours int
+     * @param minutes int
+     * @param AMTruePMFalse boolean
+     * @param isMilitaryTime boolean
+     */
     private void generateAlarmTime(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
         if (isMilitaryTime){
             alarmTime.setHours(hours);
@@ -157,6 +184,10 @@ public class Alarm {
     /**
      * an alarm is created to sound at a set number of hours and minutes
      * within the next 24 hours.
+     * @param hours int
+     * @param minutes int
+     * @param AMTruePMFalse boolean
+     * @param isMilitaryTime boolean
      */
     public void setAlarm(int hours, int minutes, boolean AMTruePMFalse, boolean isMilitaryTime){
         
@@ -175,7 +206,8 @@ public class Alarm {
     }
     
     /**
-     * the time until the alarm sounds is dictated through a Timer.
+     * The time until the alarm sounds is dictated through a Timer. The alarmTime 
+     * has been set using a previous method, if not it defaults to noon.
      */
     private void createOffset(){
         this.timer = new Timer();
