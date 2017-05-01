@@ -57,6 +57,30 @@ public class Alarm {
     }
     
     /**
+     * 
+     * @return true if this alarm is enabled
+     */
+    public boolean getEnabled(){
+        return this.isEnabled;
+    }
+    
+    /**
+     * 
+     * @return the time for this alarm
+     */
+    public Date getAlarmTime(){
+        return this.alarmTime;
+    }
+
+    /**
+     * 
+     * @return the time for this alarm
+     */
+    public Date getSnoozeTime(){
+        return this.snoozeTime;
+    }
+    
+    /**
      * The alarm has been silenced, it is no longer sounding but it will go off
      * in 1 day if it is set to repeat. If it is not set to repeat then the alarm
      * will be disabled.
