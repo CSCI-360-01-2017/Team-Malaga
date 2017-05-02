@@ -1,5 +1,6 @@
 /*
  * Assignment for CSCI 360, created by Team Malaga.
+ * This class creates a receiver that can iterate over a list of broadcast frequencies
  */
 package com.csci360.alarmclock;
 

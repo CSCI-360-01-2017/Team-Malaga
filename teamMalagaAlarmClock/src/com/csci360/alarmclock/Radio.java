@@ -1,5 +1,6 @@
 /*
  * Assignment for CSCI 360, created by Team Malaga.
+ * This class controls volume, station, and receiver of a fabricated radio.
  */
 package com.csci360.alarmclock;
 
