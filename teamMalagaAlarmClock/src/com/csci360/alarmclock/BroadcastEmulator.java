@@ -1,5 +1,6 @@
 /*
  * Assignment for CSCI 360, created by Team Malaga.
+ * A class for emulating a set of viable broadcasts within a range of frequencies.
  */
 package com.csci360.alarmclock;
 
